@@ -10,5 +10,6 @@ export default defineConfig({
       { text: 'Getting Started', link: '/getting-started' },
       { text: 'Store', link: '/Store' },
     ],
+    
   },
 })
