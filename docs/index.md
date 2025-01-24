@@ -36,15 +36,13 @@ Learn from real-world Industry 5.0 examples.
       });
     }
 
-    // Render blog titles dynamically
+    // Render blog titles dynamically in the same format as Featured Topics
     const latestBlogsContainer = document.getElementById("latest-blogs");
     blogs.forEach(blog => {
       const blogItem = document.createElement("div");
-      blogItem.innerHTML = `<a href="${blog.url}" style="text-decoration: none; color: inherit;">${blog.title}</a>`;
-      blogItem.style.marginBottom = "12px"; // Add some spacing between the blog titles
+      blogItem.innerHTML = `### <a href="${blog.url}" style="text-decoration: none; color: inherit;">${blog.title}</a>`;
+      blogItem.style.marginBottom = "8px"; // Add some spacing between blog items
       latestBlogsContainer.appendChild(blogItem);
     });
   }
 </script>
-
-
