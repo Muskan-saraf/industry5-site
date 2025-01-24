@@ -24,26 +24,27 @@ Learn from real-world Industry 5.0 examples.
 
 <script>
   if (typeof window !== 'undefined') {
-    // Import all blog files dynamically
+    // Dynamically import all `.md` files from the `/blog` folder
     const blogImports = import.meta.glob('/blog/*.md', { eager: true });
 
     const blogs = [];
     for (const path in blogImports) {
       const blog = blogImports[path];
       blogs.push({
-        url: path.replace('.md', ''), // Remove .md for correct VitePress route
+        url: path.replace('.md', ''), // Remove `.md` from the URL for proper routing
         title: blog.title || path.split('/').pop().replace('.md', ''), // Use title from frontmatter or filename
       });
     }
 
-    // Render blog titles dynamically in the same style as the example
+    // Render blog titles dynamically
     const latestBlogsContainer = document.getElementById("latest-blogs");
     blogs.forEach(blog => {
       const blogItem = document.createElement("div");
-      blogItem.innerHTML = `### [${blog.title}](${blog.url})`; // Generate the exact desired format
-      blogItem.style.marginBottom = "8px"; // Optional: Add spacing between links
+      blogItem.innerHTML = `<a href="${blog.url}" style="text-decoration: none; color: inherit;">${blog.title}</a>`;
+      blogItem.style.marginBottom = "12px"; // Add some spacing between the blog titles
       latestBlogsContainer.appendChild(blogItem);
     });
   }
 </script>
+
 
