@@ -24,27 +24,24 @@ Learn from real-world Industry 5.0 examples.
 
 <script>
   if (typeof window !== 'undefined') {
-    // Dynamically import all `.md` files from the `blog` folder
-    const blogImports = import.meta.glob('/blog/*.md');
+    // Import all blog files dynamically
+    const blogImports = import.meta.glob('/blog/*.md', { eager: true });
 
     const blogs = [];
     for (const path in blogImports) {
+      const blog = blogImports[path];
       blogs.push({
-        url: path.replace(/^\/blog/, '/blog'), // Construct the correct URL
-        title: path.split('/').pop().replace('.md', ''), // Derive the title from the filename
-        date: "2025-01-01", // Placeholder date (use frontmatter for actual dates)
+        url: path.replace(/^\/blog/, '/blog').replace('.md', ''), // Remove .md from the URL
+        title: blog.title || path.split('/').pop().replace('.md', ''), // Use title from frontmatter or filename
       });
     }
 
-    // Sort blogs by date (update if dates are dynamic from frontmatter)
-    blogs.sort((a, b) => new Date(b.date) - new Date(a.date));
-
-    // Render blogs dynamically
+    // Render blog titles dynamically
     const latestBlogsContainer = document.getElementById("latest-blogs");
     blogs.forEach(blog => {
       const blogItem = document.createElement("div");
-      blogItem.innerHTML = `<a href="${blog.url}">[${blog.title}](${blog.url})</a>`;
-      blogItem.style.marginBottom = "8px"; // Optional: Add spacing
+      blogItem.innerHTML = `<a href="${blog.url}" style="text-decoration: none; color: inherit;">${blog.title}</a>`;
+      blogItem.style.marginBottom = "8px"; // Optional: Add spacing between links
       latestBlogsContainer.appendChild(blogItem);
     });
   }
