@@ -31,7 +31,6 @@ const formatDate = (date) =>
   });
 </script>
 
-## Latest Blog Posts
 
 <div v-for="post in posts" :key="post.url" class="blog-item">
   <a :href="post.url" class="blog-title">{{ post.title }}</a>

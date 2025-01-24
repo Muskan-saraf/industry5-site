@@ -7,9 +7,11 @@ export default {
   base: '/industry5-site/',
   themeConfig: {
     nav: [
+    
       { text: 'Getting Started', link: '/getting-started' },
       { text: 'Store', link: '/Store' },
       { text: 'Blog', link: '/blog' },
+      {text: 'Home', link: '/industry5-site/'}
     ],
     sidebar: {
       '/blog/': fs.existsSync(path.resolve(__dirname, '../blog'))
