@@ -23,21 +23,23 @@ Learn from real-world Industry 5.0 examples.
 <div id="latest-blogs"></div>
 
 <script>
-  // Example blog data (Replace with a backend call if using a dynamic framework)
-  const blogs = [
-    { title: "How AI is Shaping Industry 5.0", url: "/blog/ai-industry5", date: "2025-01-24" },
-    { title: "Human-Centric Design in the Future of Manufacturing", url: "/blog/human-centric-design", date: "2025-01-23" },
-    { title: "The Role of Cobots in Industry 5.0", url: "/blog/cobots", date: "2025-01-22" },
-  ];
+  if (typeof window !== 'undefined') {
+    // Example blog data (Replace with a backend call if using a dynamic framework)
+    const blogs = [
+      { title: "How AI is Shaping Industry 5.0", url: "/blog/ai-industry5", date: "2025-01-24" },
+      { title: "Human-Centric Design in the Future of Manufacturing", url: "/blog/human-centric-design", date: "2025-01-23" },
+      { title: "The Role of Cobots in Industry 5.0", url: "/blog/cobots", date: "2025-01-22" },
+    ];
 
-  // Sort blogs by date (most recent first)
-  blogs.sort((a, b) => new Date(b.date) - new Date(a.date));
+    // Sort blogs by date (most recent first)
+    blogs.sort((a, b) => new Date(b.date) - new Date(a.date));
 
-  // Render blogs
-  const latestBlogsContainer = document.getElementById("latest-blogs");
-  blogs.forEach(blog => {
-    const blogItem = document.createElement("div");
-    blogItem.innerHTML = `<a href="${blog.url}">${blog.title}</a>`;
-    latestBlogsContainer.appendChild(blogItem);
-  });
+    // Render blogs
+    const latestBlogsContainer = document.getElementById("latest-blogs");
+    blogs.forEach(blog => {
+      const blogItem = document.createElement("div");
+      blogItem.innerHTML = `<a href="${blog.url}">${blog.title}</a>`;
+      latestBlogsContainer.appendChild(blogItem);
+    });
+  }
 </script>
