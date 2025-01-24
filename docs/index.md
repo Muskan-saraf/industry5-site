@@ -17,7 +17,6 @@ Get access to essential tools and templates for implementation.
 ### [Case Studies](/categories/case-studies)
 Learn from real-world Industry 5.0 examples.
 
-
 <script setup>
 import { ref, onMounted } from "vue";
 
@@ -29,7 +28,7 @@ onMounted(async () => {
   const blogPosts = Object.entries(blogFiles).map(([path, module]) => {
     const { frontmatter } = module;
     return {
-      url: path.replace(".md", ""),
+      url: path.replace(".md", ""), // Generate VitePress-compatible URLs
       title: frontmatter?.title || path.split("/").pop().replace(".md", ""),
       date: frontmatter?.date || "1970-01-01",
     };
@@ -74,4 +73,3 @@ const formatDate = (date) =>
   text-decoration: underline;
 }
 </style>
-
