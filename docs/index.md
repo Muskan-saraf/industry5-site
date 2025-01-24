@@ -32,17 +32,18 @@ Learn from real-world Industry 5.0 examples.
       const blog = blogImports[path];
       blogs.push({
         url: path.replace('.md', ''), // Remove .md for correct VitePress route
-        title: blog.title || path.split('/').pop().replace('.md', ''), // Use frontmatter title or filename
+        title: blog.title || path.split('/').pop().replace('.md', ''), // Use title from frontmatter or filename
       });
     }
 
-    // Render blog titles dynamically in the same style as `What is Industry 5.0?`
+    // Render blog titles dynamically in the same style as the example
     const latestBlogsContainer = document.getElementById("latest-blogs");
     blogs.forEach(blog => {
       const blogItem = document.createElement("div");
-      blogItem.innerHTML = `### [${blog.title}](${blog.url})`;
+      blogItem.innerHTML = `### [${blog.title}](${blog.url})`; // Generate the exact desired format
       blogItem.style.marginBottom = "8px"; // Optional: Add spacing between links
       latestBlogsContainer.appendChild(blogItem);
     });
   }
 </script>
+
