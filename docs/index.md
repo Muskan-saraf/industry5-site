@@ -31,7 +31,7 @@ Learn from real-world Industry 5.0 examples.
     for (const path in blogImports) {
       const blog = blogImports[path];
       blogs.push({
-        url: path.replace('.md', ''), // Remove `.md` for proper VitePress routing
+        url: path.replace('.md', ''), // Remove `.md` for proper routing
         title: blog.title || path.split('/').pop().replace('.md', ''), // Use frontmatter title or filename
       });
     }
