@@ -24,7 +24,6 @@ Learn from real-world Industry 5.0 examples.
 
 <script>
   if (typeof window !== 'undefined') {
-    // Example blog data (Replace with a backend call if using a dynamic framework)
     const blogs = [
       { title: "How AI is Shaping Industry 5.0", url: "/blog/ai-industry5", date: "2025-01-24" },
       { title: "Human-Centric Design in the Future of Manufacturing", url: "/blog/human-centric-design", date: "2025-01-23" },
@@ -34,11 +33,12 @@ Learn from real-world Industry 5.0 examples.
     // Sort blogs by date (most recent first)
     blogs.sort((a, b) => new Date(b.date) - new Date(a.date));
 
-    // Render blogs
+    // Render blogs in the desired format
     const latestBlogsContainer = document.getElementById("latest-blogs");
     blogs.forEach(blog => {
       const blogItem = document.createElement("div");
-      blogItem.innerHTML = `<a href="${blog.url}">${blog.title}</a>`;
+      blogItem.textContent = `[${blog.title}](${blog.url})`;
+      blogItem.style.marginBottom = "8px"; // Optional: Add spacing between items
       latestBlogsContainer.appendChild(blogItem);
     });
   }
