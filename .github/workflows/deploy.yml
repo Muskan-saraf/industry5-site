@@ -1,4 +1,4 @@
-name: Deploy VitePress to GitHub Pages
+name: Deploy VitePress Site
 
 on:
   push:
@@ -6,20 +6,20 @@ on:
       - main
 
 jobs:
-  deploy:
+  build-and-deploy:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout repository
+    - name: Checkout code
       uses: actions/checkout@v3
 
-    - name: Setup Node.js
+    - name: Set up Node.js
       uses: actions/setup-node@v3
       with:
-        node-version: 16
+        node-version: '16'
 
     - name: Install dependencies
-      run: npm install
+      run: npm ci
 
     - name: Build VitePress site
       run: npm run docs:build
@@ -28,4 +28,4 @@ jobs:
       uses: peaceiris/actions-gh-pages@v3
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
-        publish_dir: ./docs/.vitepress/dist
+        publish_dir: docs/.vitepress/dist
