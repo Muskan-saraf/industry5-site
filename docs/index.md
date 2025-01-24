@@ -25,20 +25,24 @@ const posts = ref([]);
 onMounted(async () => {
   const blogFiles = import.meta.glob('/blog/*.md', { eager: true });
 
-  const blogPosts = Object.entries(blogFiles)
-    .map(([path, module]) => {
-      const frontmatter = module?.frontmatter || {};
-      if (!frontmatter.title) return null; // Skip files without a title
-      return {
-        url: path.replace('.md', ''), // Ensure clean URLs
-        title: frontmatter.title, // Strictly use the frontmatter title
-      };
-    })
-    .filter((post) => post !== null); // Remove null entries (files without titles)
+  const blogPosts = Object.entries(blogFiles).map(([path, module]) => {
+    const content = module?.default || '';
 
-  posts.value = blogPosts.sort((a, b) => new Date(b.date) - new Date(a.date));
+    // Extract the first heading (#) as the title
+    const title = content
+      .split('\n') // Split content into lines
+      .find((line) => line.trim().startsWith('#')) // Find the first line starting with #
+      ?.replace('#', '') // Remove the #
+      .trim(); // Trim leading and trailing spaces
+
+    return {
+      url: path.replace('.md', ''), // Clean URL without .md
+      title: title || 'Untitled', // Use extracted title or fallback to 'Untitled'
+    };
+  });
+
+  posts.value = blogPosts.filter((post) => post.title); // Filter out posts without valid titles
 });
-
 </script>
 
 ## Latest Blog Posts
@@ -50,12 +54,6 @@ onMounted(async () => {
 <style scoped>
 .blog-item {
   margin-bottom: 1.5rem;
-}
-
-.blog-date {
-  font-size: 0.9rem;
-  color: #666;
-  margin-bottom: 0.5rem;
 }
 
 .blog-title {
