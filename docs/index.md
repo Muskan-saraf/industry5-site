@@ -17,9 +17,6 @@ Get access to essential tools and templates for implementation.
 ### [Case Studies](/categories/case-studies)
 Learn from real-world Industry 5.0 examples.
 
----
-
-## Latest Blog Posts
 
 <script setup>
 import { ref, onMounted } from "vue";
@@ -52,7 +49,6 @@ const formatDate = (date) =>
 ## Latest Blog Posts
 
 <div v-for="post in posts" :key="post.url" class="blog-item">
-  <div class="blog-date">{{ formatDate(post.date) }}</div>
   <a :href="post.url" class="blog-title">{{ post.title }}</a>
 </div>
 
