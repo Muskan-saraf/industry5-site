@@ -11,7 +11,7 @@ export default {
       { text: 'Getting Started', link: '/getting-started' },
       { text: 'Store', link: '/Store' },
       { text: 'Blog', link: '/blog' },
-      {text: 'Home', link: '/industry5-site/'}
+      
     ],
     sidebar: {
       '/blog/': fs.existsSync(path.resolve(__dirname, '../blog'))

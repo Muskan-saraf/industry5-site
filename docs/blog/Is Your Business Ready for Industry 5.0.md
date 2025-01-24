@@ -1,3 +1,7 @@
+---
+title: Is Your Business Ready for Industry 5.0? Key Steps to Adapt
+---
+
 # Is Your Business Ready for Industry 5.0? Key Steps to Adapt
 
 Is Your Business Ready for Industry 5.0? Key Steps to Adapt
