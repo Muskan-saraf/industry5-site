@@ -31,17 +31,17 @@ Learn from real-world Industry 5.0 examples.
     for (const path in blogImports) {
       const blog = blogImports[path];
       blogs.push({
-        url: path.replace('.md', ''), // Remove `.md` from the URL for proper routing
-        title: blog.title || path.split('/').pop().replace('.md', ''), // Use title from frontmatter or filename
+        url: path.replace('.md', ''), // Remove `.md` for proper VitePress routing
+        title: blog.title || path.split('/').pop().replace('.md', ''), // Use frontmatter title or filename
       });
     }
 
-    // Render blog titles dynamically in the same format as Featured Topics
+    // Render blog titles dynamically
     const latestBlogsContainer = document.getElementById("latest-blogs");
     blogs.forEach(blog => {
       const blogItem = document.createElement("div");
-      blogItem.innerHTML = `### <a href="${blog.url}" style="text-decoration: none; color: inherit;">${blog.title}</a>`;
-      blogItem.style.marginBottom = "8px"; // Add some spacing between blog items
+      blogItem.innerHTML = `### [${blog.title}](${blog.url})`;
+      blogItem.style.marginBottom = "12px"; // Add spacing between blog titles
       latestBlogsContainer.appendChild(blogItem);
     });
   }
