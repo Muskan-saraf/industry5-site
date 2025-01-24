@@ -22,26 +22,31 @@ import { ref, onMounted } from "vue";
 
 const posts = ref([]);
 
-onMounted(async () => {
+onMounted(() => {
+  // Dynamically import all blog files
   const blogFiles = import.meta.glob('/blog/*.md', { eager: true });
 
-  const blogPosts = Object.entries(blogFiles).map(([path, module]) => {
-    const content = module?.default || '';
+  const blogPosts = Object.entries(blogFiles)
+    .map(([path, module]) => {
+      const content = module.default || ''; // Get the file content
+      // Extract the first line starting with # as the title
+      const title = content
+        .split('\n') // Split content into lines
+        .find((line) => line.trim().startsWith('#')) // Find the first line starting with #
+        ?.replace('#', '') // Remove the `#`
+        .trim(); // Trim leading and trailing whitespace
 
-    // Extract the first heading (#) as the title
-    const title = content
-      .split('\n') // Split content into lines
-      .find((line) => line.trim().startsWith('#')) // Find the first line starting with #
-      ?.replace('#', '') // Remove the #
-      .trim(); // Trim leading and trailing spaces
+      // If no title is found, skip this file
+      if (!title) return null;
 
-    return {
-      url: path.replace('.md', ''), // Clean URL without .md
-      title: title || 'Untitled', // Use extracted title or fallback to 'Untitled'
-    };
-  });
+      return {
+        url: path.replace('.md', ''), // Remove .md from the path for clean URLs
+        title, // Use the extracted title
+      };
+    })
+    .filter((post) => post !== null); // Remove null entries (files without a title)
 
-  posts.value = blogPosts.filter((post) => post.title); // Filter out posts without valid titles
+  posts.value = blogPosts; // Assign processed posts to the ref
 });
 </script>
 
