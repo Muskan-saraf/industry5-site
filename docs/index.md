@@ -24,21 +24,27 @@ Learn from real-world Industry 5.0 examples.
 
 <script>
   if (typeof window !== 'undefined') {
-    const blogs = [
-      { title: "How AI is Shaping Industry 5.0", url: "/blog/ai-industry5", date: "2025-01-24" },
-      { title: "Human-Centric Design in the Future of Manufacturing", url: "/blog/human-centric-design", date: "2025-01-23" },
-      { title: "The Role of Cobots in Industry 5.0", url: "/blog/cobots", date: "2025-01-22" },
-    ];
+    // Dynamically import all `.md` files from the `blog` folder
+    const blogImports = import.meta.glob('/blog/*.md');
 
-    // Sort blogs by date (most recent first)
+    const blogs = [];
+    for (const path in blogImports) {
+      blogs.push({
+        url: path.replace(/^\/blog/, '/blog'), // Construct the correct URL
+        title: path.split('/').pop().replace('.md', ''), // Derive the title from the filename
+        date: "2025-01-01", // Placeholder date (use frontmatter for actual dates)
+      });
+    }
+
+    // Sort blogs by date (update if dates are dynamic from frontmatter)
     blogs.sort((a, b) => new Date(b.date) - new Date(a.date));
 
-    // Render blogs in the desired format
+    // Render blogs dynamically
     const latestBlogsContainer = document.getElementById("latest-blogs");
     blogs.forEach(blog => {
       const blogItem = document.createElement("div");
-      blogItem.textContent = `[${blog.title}](${blog.url})`;
-      blogItem.style.marginBottom = "8px"; // Optional: Add spacing between items
+      blogItem.innerHTML = `<a href="${blog.url}">[${blog.title}](${blog.url})</a>`;
+      blogItem.style.marginBottom = "8px"; // Optional: Add spacing
       latestBlogsContainer.appendChild(blogItem);
     });
   }
