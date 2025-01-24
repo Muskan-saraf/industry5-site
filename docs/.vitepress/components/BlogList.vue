@@ -8,46 +8,50 @@
 </template>
 
 <script>
-import { defineComponent, ref, onMounted } from 'vue'
+import { defineComponent, ref, onMounted } from "vue";
 
 export default defineComponent({
-  name: 'BlogList',
+  name: "BlogList",
   setup() {
-    const posts = ref([])
+    const posts = ref([]);
 
     onMounted(async () => {
-      // Get all blog posts
-      const blogFiles = import.meta.glob('/blog/*.md')
-      
-      const blogPosts = await Promise.all(
-        Object.entries(blogFiles).map(async ([path, loadPost]) => {
-          const { frontmatter } = await loadPost()
+      try {
+        // Import all blog posts dynamically
+        const blogFiles = import.meta.glob("/blog/*.md", { eager: true });
+
+        // Process and extract posts with metadata
+        const blogPosts = Object.entries(blogFiles).map(([path, module]) => {
+          const { frontmatter } = module;
           return {
-            url: path.replace(/^\/blog/, '').replace(/\.md$/, ''),
-            title: frontmatter.title || path.split('/').pop().replace('.md', ''),
-            date: frontmatter.date || new Date(0)
-          }
-        })
-      )
+            url: path.replace(".md", ""), // Remove `.md` for proper routing
+            title: frontmatter?.title || path.split("/").pop().replace(".md", ""),
+            date: frontmatter?.date || "1970-01-01", // Default to a very old date
+          };
+        });
 
-      // Sort by date, most recent first
-      posts.value = blogPosts.sort((a, b) => new Date(b.date) - new Date(a.date))
-    })
+        // Sort posts by date (most recent first)
+        posts.value = blogPosts.sort((a, b) => new Date(b.date) - new Date(a.date));
+      } catch (error) {
+        console.error("Error loading blog posts:", error);
+      }
+    });
 
+    // Format date for display
     const formatDate = (date) => {
-      return new Date(date).toLocaleDateString('en-US', {
-        year: 'numeric',
-        month: 'long',
-        day: 'numeric'
-      })
-    }
+      return new Date(date).toLocaleDateString("en-US", {
+        year: "numeric",
+        month: "long",
+        day: "numeric",
+      });
+    };
 
     return {
       posts,
-      formatDate
-    }
-  }
-})
+      formatDate,
+    };
+  },
+});
 </script>
 
 <style scoped>
@@ -57,21 +61,19 @@ export default defineComponent({
 
 .blog-item {
   margin-bottom: 1.5rem;
-  display: flex;
-  flex-direction: column;
 }
 
 .blog-date {
   font-size: 0.9rem;
   color: #666;
-  margin-bottom: 0.25rem;
+  margin-bottom: 0.5rem;
 }
 
 .blog-title {
   font-size: 1.1rem;
+  font-weight: 600;
   color: var(--vp-c-brand);
   text-decoration: none;
-  font-weight: 500;
 }
 
 .blog-title:hover {
