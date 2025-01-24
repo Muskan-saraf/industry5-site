@@ -25,27 +25,20 @@ const posts = ref([]);
 onMounted(async () => {
   const blogFiles = import.meta.glob('/blog/*.md', { eager: true });
 
-  const blogPosts = Object.entries(blogFiles).map(([path, module]) => {
-    const { frontmatter } = module;
-    return {
-      // Add the base path to the URL
-      url: `/industry5-site${path.replace('.md', '')}`,
-      title: frontmatter?.title || path.split('/').pop().replace('.md', ''),
-      date: frontmatter?.date || '1970-01-01',
-    };
-  });
+  const blogPosts = Object.entries(blogFiles)
+    .map(([path, module]) => {
+      const frontmatter = module?.frontmatter || {};
+      if (!frontmatter.title) return null; // Skip files without a title
+      return {
+        url: path.replace('.md', ''), // Ensure clean URLs
+        title: frontmatter.title, // Strictly use the frontmatter title
+      };
+    })
+    .filter((post) => post !== null); // Remove null entries (files without titles)
 
   posts.value = blogPosts.sort((a, b) => new Date(b.date) - new Date(a.date));
 });
 
-
-
-const formatDate = (date) =>
-  new Date(date).toLocaleDateString("en-US", {
-    year: "numeric",
-    month: "long",
-    day: "numeric",
-  });
 </script>
 
 ## Latest Blog Posts
