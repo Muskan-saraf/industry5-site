@@ -23,19 +23,22 @@ import { ref, onMounted } from "vue";
 const posts = ref([]);
 
 onMounted(async () => {
-  const blogFiles = import.meta.glob("/blog/*.md", { eager: true });
+  const blogFiles = import.meta.glob('/blog/*.md', { eager: true });
 
   const blogPosts = Object.entries(blogFiles).map(([path, module]) => {
     const { frontmatter } = module;
     return {
-      url: path.replace(".md", ""), // Generate VitePress-compatible URLs
-      title: frontmatter?.title || path.split("/").pop().replace(".md", ""),
-      date: frontmatter?.date || "1970-01-01",
+      // Add the base path to the URL
+      url: `/industry5-site${path.replace('.md', '')}`,
+      title: frontmatter?.title || path.split('/').pop().replace('.md', ''),
+      date: frontmatter?.date || '1970-01-01',
     };
   });
 
   posts.value = blogPosts.sort((a, b) => new Date(b.date) - new Date(a.date));
 });
+
+
 
 const formatDate = (date) =>
   new Date(date).toLocaleDateString("en-US", {
