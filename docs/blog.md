@@ -12,7 +12,7 @@ onMounted(async () => {
     const { frontmatter } = module;
     return {
       // Add the base path to the URL
-      url: /industry5-site${path.replace('.md', '')},
+      url: `/industry5-site${path.replace('.md', '')}`,
       title: frontmatter?.title || path.split('/').pop().replace('.md', ''),
       date: frontmatter?.date || '1970-01-01',
     };
@@ -21,8 +21,6 @@ onMounted(async () => {
   posts.value = blogPosts.sort((a, b) => new Date(b.date) - new Date(a.date));
 });
 
-
-
 const formatDate = (date) =>
   new Date(date).toLocaleDateString("en-US", {
     year: "numeric",
@@ -30,7 +28,6 @@ const formatDate = (date) =>
     day: "numeric",
   });
 </script>
-
 
 <div v-for="post in posts" :key="post.url" class="blog-item">
   <a :href="post.url" class="blog-title">{{ post.title }}</a>
