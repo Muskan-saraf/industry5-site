@@ -18,35 +18,32 @@ Get access to essential tools and templates for implementation.
 Learn from real-world Industry 5.0 examples.
 
 <script setup>
-import { ref, onMounted } from "vue";
+import { ref, onMounted } from 'vue';
 
 const posts = ref([]);
 
 onMounted(() => {
-  // Dynamically import all blog files
+  // Import all markdown files from the blog folder
   const blogFiles = import.meta.glob('/blog/*.md', { eager: true });
 
-  const blogPosts = Object.entries(blogFiles)
-    .map(([path, module]) => {
-      const content = module.default || ''; // Get the file content
-      // Extract the first line starting with # as the title
-      const title = content
-        .split('\n') // Split content into lines
-        .find((line) => line.trim().startsWith('#')) // Find the first line starting with #
-        ?.replace('#', '') // Remove the `#`
-        .trim(); // Trim leading and trailing whitespace
+  // Process each blog file to extract its title and URL
+  const blogPosts = Object.entries(blogFiles).map(([path, module]) => {
+    const content = module.default || ''; // Get the raw markdown content
+    const title = content
+      .split('\n') // Split content into lines
+      .find((line) => line.trim().startsWith('#')) // Find the first line with #
+      ?.replace('#', '') // Remove the # character
+      .trim(); // Trim leading/trailing spaces
 
-      // If no title is found, skip this file
-      if (!title) return null;
+    if (!title) return null; // Skip files without a valid title
 
-      return {
-        url: path.replace('.md', ''), // Remove .md from the path for clean URLs
-        title, // Use the extracted title
-      };
-    })
-    .filter((post) => post !== null); // Remove null entries (files without a title)
+    return {
+      url: path.replace('.md', ''), // Remove .md for clean URLs
+      title, // Extracted title
+    };
+  });
 
-  posts.value = blogPosts; // Assign processed posts to the ref
+  posts.value = blogPosts.filter((post) => post !== null); // Filter out null values
 });
 </script>
 

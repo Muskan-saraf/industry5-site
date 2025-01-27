@@ -1,5 +1,3 @@
-# Blog
-
 <script setup>
 import { ref, onMounted } from "vue";
 
@@ -11,18 +9,17 @@ onMounted(async () => {
   const blogPosts = Object.entries(blogFiles).map(([path, module]) => {
     const { frontmatter } = module;
     return {
-      // Add the base path to the URL
-      url: `/industry5-site${path.replace('.md', '')}`,
-      title: frontmatter?.title || path.split('/').pop().replace('.md', ''),
-      date: frontmatter?.date || '1970-01-01',
+      url: `/industry5-site${path.replace('.md', '')}`, // URL for the blog post
+      title: frontmatter?.title || "Untitled Post",    // Title from frontmatter or fallback
+      date: frontmatter?.date || '1970-01-01',        // Date from frontmatter or default
     };
   });
 
+  // Sort posts by date (most recent first)
   posts.value = blogPosts.sort((a, b) => new Date(b.date) - new Date(a.date));
 });
 
-
-
+// Helper function to format dates
 const formatDate = (date) =>
   new Date(date).toLocaleDateString("en-US", {
     year: "numeric",
@@ -31,10 +28,12 @@ const formatDate = (date) =>
   });
 </script>
 
-
-<div v-for="post in posts" :key="post.url" class="blog-item">
-  <a :href="post.url" class="blog-title">{{ post.title }}</a>
-</div>
+<template>
+  <div v-for="post in posts" :key="post.url" class="blog-item">
+    <a :href="post.url" class="blog-title">{{ post.title }}</a>
+    <div class="blog-date">{{ formatDate(post.date) }}</div>
+  </div>
+</template>
 
 <style scoped>
 .blog-item {
