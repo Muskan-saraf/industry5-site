@@ -18,33 +18,41 @@ Get access to essential tools and templates for implementation.
 Learn from real-world Industry 5.0 examples.
 
 <script setup>
-import { ref, onMounted } from 'vue';
+import { ref, onMounted } from "vue";
 
 const posts = ref([]);
 
-onMounted(() => {
-  // Import all markdown files from the blog folder
+onMounted(async () => {
   const blogFiles = import.meta.glob('/blog/*.md', { eager: true });
 
-  // Process each blog file to extract its title and URL
+  console.log('Blog Files:', blogFiles); // Log all blog files detected
+
   const blogPosts = Object.entries(blogFiles).map(([path, module]) => {
-    const content = module.default || ''; // Get the raw markdown content
+    const content = module.default || '';
+    console.log('Raw Content for:', path, '\n', content); // Log raw content for each file
+
+    // Extract the first line starting with #
     const title = content
-      .split('\n') // Split content into lines
-      .find((line) => line.trim().startsWith('#')) // Find the first line with #
-      ?.replace('#', '') // Remove the # character
-      .trim(); // Trim leading/trailing spaces
+      .split('\n')
+      .find((line) => line.trim().startsWith('#'))
+      ?.replace('#', '')
+      .trim();
+
+    console.log('Extracted Title for:', path, '\n', title); // Log the extracted title
 
     if (!title) return null; // Skip files without a valid title
 
     return {
-      url: path.replace('.md', ''), // Remove .md for clean URLs
+      url: path.replace('.md', ''), // Remove .md from the URL
       title, // Extracted title
     };
   });
 
-  posts.value = blogPosts.filter((post) => post !== null); // Filter out null values
+  console.log('Processed Blog Posts:', blogPosts); // Log final processed posts
+
+  posts.value = blogPosts.filter((post) => post !== null); // Remove null entries
 });
+
 </script>
 
 ## Latest Blog Posts
