@@ -19,24 +19,22 @@ const categories = [
 ];
 
 onMounted(() => {
-  // Import Markdown files from the `docs/blog` directory
   const blogFiles = import.meta.glob('/docs/blog/*.md', { eager: true });
 
-  console.log("Loaded Blog Files:", blogFiles); // Debug imported files
-
   const blogPosts = Object.entries(blogFiles).map(([path, module]) => {
-    const { frontmatter } = module;
+    const frontmatter = module?.frontmatter || {}; // Handle undefined frontmatter
     return {
-      url: `/blog${path.replace('/docs/blog', '').replace('.md', '')}`, // Correct blog post URLs
-      title: frontmatter?.title || path.split('/').pop().replace('.md', ''),
-      date: frontmatter?.date || '1970-01-01',
-      category: frontmatter?.category || "Uncategorized",
+      url: `/blog${path.replace('/docs/blog', '').replace('.md', '')}`,
+      title: frontmatter.title || "Untitled", // Default title
+      date: frontmatter.date || "1970-01-01", // Default date
+      category: frontmatter.category || "Uncategorized", // Default category
     };
   });
 
   posts.value = blogPosts.sort((a, b) => new Date(b.date) - new Date(a.date));
-  console.log("Processed Blog Posts:", posts.value); // Debug processed posts
+  console.log("Processed Blog Posts:", posts.value); // Debug the final list
 });
+
 
 // Filter posts dynamically based on category and search query
 const filteredPosts = computed(() => {
