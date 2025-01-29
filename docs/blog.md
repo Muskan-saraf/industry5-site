@@ -12,7 +12,8 @@ onMounted(async () => {
     const { frontmatter } = module;
     return {
       // Add the base path to the URL
-      url: /industry5-site${path.replace('.md', '')},
+      url: `/industry5-site${path.replace('.md', '')}`,
+
 
       title: frontmatter?.title || path.split('/').pop().replace('.md', ''),
       date: frontmatter?.date || '1970-01-01',
