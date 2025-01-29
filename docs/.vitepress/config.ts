@@ -1,5 +1,6 @@
-import fs from 'fs'
-import path from 'path'
+import fs from 'fs';
+import path from 'path';
+import matter from 'gray-matter';
 
 export default {
   title: "Industry 5.0 Hub",
@@ -7,11 +8,9 @@ export default {
   base: '/industry5-site/',
   themeConfig: {
     nav: [
-    
       { text: 'Getting Started', link: '/getting-started' },
       { text: 'Store', link: '/Store' },
       { text: 'Blog', link: '/blog' },
-      
     ],
     sidebar: {
       '/blog/': fs.existsSync(path.resolve(__dirname, '../blog'))
@@ -19,15 +18,25 @@ export default {
             {
               text: 'Blog',
               items: fs
-                .readdirSync(path.resolve(__dirname, '../blog')) // Corrected path
+                .readdirSync(path.resolve(__dirname, '../blog'))
                 .filter((file) => file.endsWith('.md'))
-                .map((file) => ({
-                  text: file.replace('.md', '').replace(/-/g, ' '),
-                  link: `/blog/${file.replace('.md', '')}`,
-                })),
+                .map((file) => {
+                  const filePath = path.resolve(__dirname, '../blog', file);
+                  const content = fs.readFileSync(filePath, 'utf-8');
+                  const { data } = matter(content); // Extract front matter
+                  return {
+                    text: data.title || file.replace('.md', ''),
+                    link: `/blog/${file.replace('.md', '')}`,
+                  };
+                }),
             },
           ]
         : [],
     },
   },
-}
+  markdown: {
+    config: (md) => {
+      // Customize Markdown rendering if needed
+    },
+  },
+};
