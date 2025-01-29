@@ -49,27 +49,20 @@
 import { ref, computed, onMounted } from "vue";
 
 const blogs = ref([]);
-const categories = ref(["All", "AI", "Sustainability", "Human Centric"]);
+const categories = ref(["All", "Sustainability", "Human Centric","Industry 5.0 Tech","Case Study / Applications","Workforce development","Business Strategies","Resources"]);
 const selectedCategory = ref("All");
 const searchQuery = ref("");
 
 onMounted(() => {
   const blogFiles = import.meta.glob('../docs/blog/*.md', { eager: true });
-  console.log('Loaded Blog Files:', blogFiles); // Debugging
-
   blogs.value = Object.entries(blogFiles).map(([path, module]) => {
     const { frontmatter } = module;
-
-    console.log('Frontmatter:', frontmatter); // Debugging
-
     return {
-      url: path.replace('../docs/blog', '/blog').replace('.md', '.html'), // Adjust for HTML paths
+      url: path.replace('../docs/blog', '/blog').replace('.md', '.html'),
       title: frontmatter?.title || "Untitled Blog",
-      tags: frontmatter?.tags || [],
+      tags: frontmatter?.tags || []
     };
   });
-
-  console.log('Processed Blogs:', blogs.value); // Debugging
 });
 
 const selectCategory = (category) => {
@@ -132,6 +125,5 @@ const filteredBlogs = computed(() => {
   padding: 0.2rem 0.4rem;
   border-radius: 4px;
   margin-right: 0.5rem;
-  font-size: 0.9rem;
 }
 </style>
