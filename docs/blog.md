@@ -1,5 +1,12 @@
+---
+title: Blog
+---
+
 # Blog
 
-<ClientOnly>
-  <BlogList />
-</ClientOnly>
+
+<script setup>
+import BlogList from '../components/BlogList.vue'
+</script>
+
+<BlogList />

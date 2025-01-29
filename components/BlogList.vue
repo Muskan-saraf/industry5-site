@@ -1,49 +1,118 @@
-<script setup>
-import { ref } from "vue";
-
-const blogs = ref([
-  {
-    title: "Getting Started",
-    url: "/getting-started",
-    date: "2025-01-28",
-    description: "Learn how to get started with VitePress.",
-  },
-  {
-    title: "AI and Industry 5.0",
-    url: "/20250129-ai",
-    date: "2025-01-29",
-    description: "How AI drives Industry 5.0 innovation.",
-  },
-]);
-
-</script>
-
 <template>
-  <div class="blog-list">
-    <h1>All Blogs</h1>
-    <div class="blog-item" v-for="blog in blogs" :key="blog.url">
-      <a :href="blog.url" class="blog-title">
-        <h2>{{ blog.title }}</h2>
-      </a>
-      <p class="blog-date">Published on {{ blog.date }}</p>
-      <p class="blog-description">{{ blog.description }}</p>
+  <div>
+    <!-- Categories -->
+    <ul class="categories">
+      <li
+        v-for="category in categories"
+        :key="category"
+        @click="selectCategory(category)"
+        :class="{ active: selectedCategory === category }"
+        style="cursor: pointer; margin-right: 1rem; display: inline-block;"
+      >
+        {{ category }}
+      </li>
+    </ul>
+
+    <!-- Search Bar -->
+    <input
+      type="text"
+      v-model="searchQuery"
+      placeholder="Search blogs..."
+      style="padding: 0.5rem; margin-bottom: 1rem; width: 100%;"
+    />
+
+    <!-- Blog List -->
+    <div v-if="filteredBlogs.length === 0">
+      <p>No blogs found for the selected category or search query.</p>
     </div>
+    <ul v-else>
+      <li v-for="post in filteredBlogs" :key="post.url" class="blog-item">
+        <!-- Blog Title -->
+        <a :href="post.url" class="blog-title">{{ post.title }}</a>
+        <!-- Tags Below Title -->
+        <div v-if="post.tags.length" class="blog-tags">
+          Tags:
+          <span
+            v-for="tag in post.tags"
+            :key="tag"
+            class="blog-tag"
+          >
+            {{ tag }}
+          </span>
+        </div>
+      </li>
+    </ul>
   </div>
 </template>
 
+<script setup>
+import { ref, computed, onMounted } from "vue";
+
+const blogs = ref([]);
+const categories = ref(["All", "AI", "Sustainability", "Human Centric"]);
+const selectedCategory = ref("All");
+const searchQuery = ref("");
+
+onMounted(() => {
+  const blogFiles = import.meta.glob('../docs/blog/*.md', { eager: true });
+  console.log('Loaded Blog Files:', blogFiles); // Debugging
+
+  blogs.value = Object.entries(blogFiles).map(([path, module]) => {
+    const { frontmatter } = module;
+
+    console.log('Frontmatter:', frontmatter); // Debugging
+
+    return {
+      url: path.replace('../docs/blog', '/blog').replace('.md', '.html'), // Adjust for HTML paths
+      title: frontmatter?.title || "Untitled Blog",
+      tags: frontmatter?.tags || [],
+    };
+  });
+
+  console.log('Processed Blogs:', blogs.value); // Debugging
+});
+
+const selectCategory = (category) => {
+  selectedCategory.value = category;
+};
+
+const filteredBlogs = computed(() => {
+  let filtered = blogs.value;
+
+  if (selectedCategory.value !== "All") {
+    filtered = filtered.filter((blog) =>
+      blog.tags.includes(selectedCategory.value)
+    );
+  }
+
+  if (searchQuery.value) {
+    filtered = filtered.filter((blog) =>
+      blog.title.toLowerCase().includes(searchQuery.value.toLowerCase())
+    );
+  }
+
+  return filtered;
+});
+</script>
+
 <style scoped>
-.blog-list {
-  padding: 16px;
+.categories {
+  margin-bottom: 1.5rem;
+}
+
+.active {
+  font-weight: bold;
+  color: #0073e6;
 }
 
 .blog-item {
-  margin-bottom: 16px;
-  border-bottom: 1px solid #eaeaea;
-  padding-bottom: 16px;
+  margin-bottom: 1.5rem;
 }
 
 .blog-title {
-  color: #007acc;
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: var(--vp-c-brand);
   text-decoration: none;
 }
 
@@ -51,13 +120,18 @@ const blogs = ref([
   text-decoration: underline;
 }
 
-.blog-date {
+.blog-tags {
+  margin-top: 0.5rem;
   font-size: 0.9rem;
-  color: #666;
 }
 
-.blog-description {
-  margin: 8px 0;
-  color: #333;
+.blog-tag {
+  display: inline-block;
+  background: #f0f0f0;
+  color: #555;
+  padding: 0.2rem 0.4rem;
+  border-radius: 4px;
+  margin-right: 0.5rem;
+  font-size: 0.9rem;
 }
 </style>
