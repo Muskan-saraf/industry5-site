@@ -1,82 +1,96 @@
+# blog
+---
+layout: doc
+---
+
 <script setup>
-import { ref, computed, onMounted } from "vue";
+import { ref, onMounted } from "vue";
 
-// Reactive references for posts, categories, selected category, and search query
 const posts = ref([]);
-const categories = ref(["All"]);
-const selectedCategory = ref("All");
-const searchQuery = ref("");
+const searchQuery = ref('');
+const selectedTag = ref('');
 
-// Fetch blog posts dynamically on mount
-onMounted(() => {
-  const blogFiles = import.meta.glob("/blog/*.md", { eager: true });
-
-  const blogPosts = Object.values(blogFiles).map((module) => {
+onMounted(async () => {
+  const blogFiles = import.meta.glob('../blog/*.md', { eager: true });
+  
+  posts.value = Object.entries(blogFiles).map(([path, module]) => {
     const { frontmatter } = module;
-
-    const category = frontmatter?.category || "Uncategorized";
-
-    // Dynamically add categories if not already included
-    if (!categories.value.includes(category)) {
-      categories.value.push(category);
-    }
-
+    const filename = path.split('/').pop().replace('.md', '');
+    
     return {
-      url: `/industry5-site/blog/${frontmatter?.title.replace(/\s+/g, "-").toLowerCase()}`,
-      title: frontmatter?.title || "Untitled",
-      date: frontmatter?.date || "1970-01-01",
-      category,
+      url: `/blog/${filename}`,
+      title: frontmatter?.title || filename,
+      date: frontmatter?.date || '',
+      tags: Array.isArray(frontmatter?.tags) ? frontmatter.tags : []
     };
-  });
-
-  // Sort posts by date (newest first)
-  posts.value = blogPosts.sort((a, b) => new Date(b.date) - new Date(a.date));
+  }).sort((a, b) => new Date(b.date) - new Date(a.date));
 });
 
-// Computed property to filter posts based on category and search query
-const filteredPosts = computed(() => {
-  return posts.value.filter((post) => {
-    const matchesCategory =
-      selectedCategory.value === "All" || post.category === selectedCategory.value;
-    const matchesSearch = post.title
-      .toLowerCase()
-      .includes(searchQuery.value.toLowerCase());
-
-    return matchesCategory && matchesSearch;
-  });
-});
-
-// Helper to format dates
-const formatDate = (date) =>
-  new Date(date).toLocaleDateString("en-US", {
+const formatDate = (date) => 
+  date ? new Date(date).toLocaleDateString("en-US", {
     year: "numeric",
     month: "long",
     day: "numeric",
+  }) : '';
+
+// Filtered posts computation
+const filteredPosts = computed(() => {
+  return posts.value.filter(post => {
+    const matchesSearch = post.title.toLowerCase().includes(searchQuery.value.toLowerCase());
+    const matchesTag = !selectedTag.value || post.tags.includes(selectedTag.value);
+    return matchesSearch && matchesTag;
   });
+});
+
+const allTags = computed(() => {
+  const tags = new Set();
+  posts.value.forEach(post => {
+    post.tags.forEach(tag => tags.add(tag));
+  });
+  return Array.from(tags).sort();
+});
 </script>
 
 <template>
-  <div class="search-container">
-    <!-- Search Input -->
-    <input v-model="searchQuery" type="text" placeholder="Search blogs..." />
+  <div class="blog-container">
+    <div class="filters">
+      <input 
+        v-model="searchQuery" 
+        type="search" 
+        placeholder="Search posts..."
+        class="search-input"
+      >
+      
+      <select v-model="selectedTag" class="tag-filter">
+        <option value="">All Categories</option>
+        <option v-for="tag in allTags" :key="tag" :value="tag">
+          {{ tag }}
+        </option>
+      </select>
+    </div>
 
-    <!-- Category Dropdown -->
-    <select v-model="selectedCategory">
-      <option v-for="category in categories" :key="category" :value="category">
-        {{ category }}
-      </option>
-    </select>
-  </div>
-
-  <!-- Blog List -->
-  <div v-if="filteredPosts.length">
     <div v-for="post in filteredPosts" :key="post.url" class="blog-item">
       <a :href="post.url" class="blog-title">{{ post.title }}</a>
-      <p class="blog-date">{{ formatDate(post.date) }} | {{ post.category }}</p>
+      <div class="blog-meta">
+        <span v-if="post.date" class="blog-date">{{ formatDate(post.date) }}</span>
+        <div class="tags">
+          <span 
+            v-for="tag in post.tags" 
+            :key="tag" 
+            class="tag"
+            @click="selectedTag = tag"
+          >
+            {{ tag }}
+          </span>
+        </div>
+      </div>
     </div>
   </div>
-  <p v-else>No blogs found.</p>
 </template>
+
+<style scoped>
+/* Keep your existing styles here */
+</style>
 
 <style scoped>
 .search-container {
