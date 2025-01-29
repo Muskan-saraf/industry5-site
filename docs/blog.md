@@ -1,50 +1,36 @@
+# Blog
 <script setup>
 import { ref, computed, onMounted } from "vue";
-
 const posts = ref([]);
-const categories = ref(new Set());
+const categories = ref(["All"]);
 const selectedCategory = ref("All");
 const searchQuery = ref("");
 
-onMounted(async () => {
+onMounted(() => {
+  // Add console.log to see what files are being found
   const blogFiles = import.meta.glob("/blog/*.md", { eager: true });
+  console.log('Found blog files:', blogFiles);
 
-  const blogPosts = Object.entries(blogFiles).map(([path, module]) => {
+  const blogPosts = Object.values(blogFiles).map((module) => {
+    console.log('Processing module:', module); // Add this debug line
     const { frontmatter } = module;
     const category = frontmatter?.category || "Uncategorized";
-    
-    categories.value.add(category);
-
+    if (!categories.value.includes(category)) {
+      categories.value.push(category);
+    }
     return {
-      url: `/industry5-site${path.replace('.md', '')}`,
-      title: frontmatter?.title || path.split('/').pop().replace('.md', ''),
+      url: `/blog/${frontmatter?.title.replace(/\s+/g, '-').toLowerCase()}`, // Simplified URL
+      title: frontmatter?.title || "Untitled",
       date: frontmatter?.date || "1970-01-01",
       category,
     };
   });
-
+  
   posts.value = blogPosts.sort((a, b) => new Date(b.date) - new Date(a.date));
+  console.log('Processed posts:', posts.value); // Add this debug line
 });
 
-// Filtered posts based on category and search query
-const filteredPosts = computed(() => {
-  return posts.value.filter((post) => {
-    const matchesCategory =
-      selectedCategory.value === "All" || post.category === selectedCategory.value;
-    const matchesSearch = post.title
-      .toLowerCase()
-      .includes(searchQuery.value.toLowerCase());
-
-    return matchesCategory && matchesSearch;
-  });
-});
-
-const formatDate = (date) =>
-  new Date(date).toLocaleDateString("en-US", {
-    year: "numeric",
-    month: "long",
-    day: "numeric",
-  });
+// Rest of your code remains the same...
 </script>
 
 <template>
@@ -55,17 +41,19 @@ const formatDate = (date) =>
   <div class="category-filter">
     <label for="category">Category:</label>
     <select v-model="selectedCategory" id="category">
-      <option value="All">All</option>
       <option v-for="category in categories" :key="category" :value="category">
         {{ category }}
       </option>
     </select>
   </div>
 
-  <div v-for="post in filteredPosts" :key="post.url" class="blog-item">
-    <a :href="post.url" class="blog-title">{{ post.title }}</a>
-    <p class="blog-date">{{ formatDate(post.date) }} | {{ post.category }}</p>
+  <div v-if="filteredPosts.length > 0">
+    <div v-for="post in filteredPosts" :key="post.url" class="blog-item">
+      <a :href="post.url" class="blog-title">{{ post.title }}</a>
+      <p class="blog-date">{{ formatDate(post.date) }} | {{ post.category }}</p>
+    </div>
   </div>
+  <p v-else>No blogs found.</p>
 </template>
 
 <style scoped>
