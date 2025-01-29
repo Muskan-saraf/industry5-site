@@ -1,10 +1,9 @@
-# blog
 ---
 layout: doc
 ---
 
 <script setup>
-import { ref, onMounted } from "vue";
+import { ref, onMounted, computed } from "vue";
 
 const posts = ref([]);
 const searchQuery = ref('');
@@ -33,7 +32,6 @@ const formatDate = (date) =>
     day: "numeric",
   }) : '';
 
-// Filtered posts computation
 const filteredPosts = computed(() => {
   return posts.value.filter(post => {
     const matchesSearch = post.title.toLowerCase().includes(searchQuery.value.toLowerCase());
@@ -89,42 +87,79 @@ const allTags = computed(() => {
 </template>
 
 <style scoped>
-/* Keep your existing styles here */
-</style>
-
-<style scoped>
-.search-container {
-  display: flex;
-  gap: 10px;
-  margin-bottom: 1rem;
+.blog-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 2rem;
 }
 
-.search-container input,
-.search-container select {
-  padding: 8px;
-  font-size: 1rem;
-  border: 1px solid #ccc;
-  border-radius: 5px;
+.filters {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.search-input {
+  flex: 1;
+  padding: 0.5rem;
+  border: 1px solid var(--vp-c-divider);
+  border-radius: 4px;
+}
+
+.tag-filter {
+  padding: 0.5rem;
+  border: 1px solid var(--vp-c-divider);
+  border-radius: 4px;
+  background: var(--vp-c-bg);
 }
 
 .blog-item {
-  margin-bottom: 1rem;
-}
-
-.blog-date {
-  font-size: 0.9rem;
-  color: #666;
-  margin-top: 0.25rem;
+  margin-bottom: 1.5rem;
+  padding: 1rem;
+  border-radius: 8px;
+  background: var(--vp-c-bg-soft);
 }
 
 .blog-title {
-  font-size: 1.1rem;
-  font-weight: bold;
+  font-size: 1.2rem;
+  font-weight: 600;
   color: var(--vp-c-brand);
   text-decoration: none;
 }
 
 .blog-title:hover {
   text-decoration: underline;
+}
+
+.blog-meta {
+  margin-top: 0.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.blog-date {
+  color: var(--vp-c-text-2);
+  font-size: 0.9em;
+}
+
+.tags {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.tag {
+  background: var(--vp-c-brand-soft);
+  color: var(--vp-c-brand);
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  font-size: 0.8em;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.tag:hover {
+  background: var(--vp-c-brand);
+  color: white;
 }
 </style>
