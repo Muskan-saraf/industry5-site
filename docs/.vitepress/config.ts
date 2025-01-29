@@ -36,7 +36,21 @@ export default {
   },
   markdown: {
     config: (md) => {
-      // Customize Markdown rendering if needed
+      // Customize Markdown rendering to include front matter in the page
+      const defaultRender = md.renderer.rules.heading_open || function (tokens, idx, options, env, self) {
+        return self.renderToken(tokens, idx, options);
+      };
+
+      md.renderer.rules.heading_open = (tokens, idx, options, env, self) => {
+        if (idx === 0 && env.frontmatter) {
+          const frontmatter = env.frontmatter;
+          const title = frontmatter.title ? `<h1>${frontmatter.title}</h1>` : '';
+          const date = frontmatter.date ? `<p><strong>Date:</strong> ${frontmatter.date}</p>` : '';
+          const category = frontmatter.category ? `<p><strong>Category:</strong> ${frontmatter.category}</p>` : '';
+          return `${title}${date}${category}${defaultRender(tokens, idx, options, env, self)}`;
+        }
+        return defaultRender(tokens, idx, options, env, self);
+      };
     },
   },
 };
