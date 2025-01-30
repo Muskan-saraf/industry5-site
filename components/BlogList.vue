@@ -13,6 +13,14 @@
       </li>
     </ul>
 
+    <!-- Search Bar -->
+    <input
+      type="text"
+      v-model="searchQuery"
+      placeholder="Search blogs..."
+      class="search-bar"
+    />
+
     <!-- Blog List -->
     <div v-if="filteredBlogs.length === 0" class="no-blogs">
       <p>No blogs found for the selected category or search query.</p>
@@ -54,18 +62,20 @@ const categories = ref([
   "Resources",
 ]);
 const selectedCategory = ref("All");
+const searchQuery = ref(""); // Reactive search query input
 
 const formatDate = (date) => {
   if (!date) return "Date not provided";
-  const options = { 
-    year: "numeric", 
-    month: "long", 
+  const options = {
+    year: "numeric",
+    month: "long",
     day: "numeric",
     timeZone: "UTC",
   };
   return new Date(date).toLocaleDateString("en-US", options);
 };
 
+// Fetch blog data
 onMounted(() => {
   const blogFiles = import.meta.glob("../docs/blog/*.md", { eager: true });
   blogs.value = Object.entries(blogFiles)
@@ -89,22 +99,32 @@ onMounted(() => {
     .sort((a, b) => new Date(b.date) - new Date(a.date));
 });
 
+// Select a category
 const selectCategory = (category) => {
   selectedCategory.value = category;
 };
 
+// Filter blogs based on category and search query
 const filteredBlogs = computed(() => {
   let filtered = blogs.value;
+
+  // Filter by category
   if (selectedCategory.value !== "All") {
     filtered = filtered.filter((blog) =>
       blog.tags.includes(selectedCategory.value)
     );
   }
+
+  // Filter by search query
+  if (searchQuery.value.trim()) {
+    filtered = filtered.filter((blog) =>
+      blog.title.toLowerCase().includes(searchQuery.value.toLowerCase())
+    );
+  }
+
   return filtered;
 });
 </script>
-
-
 
 <style scoped>
 .categories {
