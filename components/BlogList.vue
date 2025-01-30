@@ -7,7 +7,7 @@
         :key="category"
         @click="selectCategory(category)"
         :class="{ active: selectedCategory === category }"
-        style="cursor: pointer; margin-right: 1rem; display: inline-block;"
+        class="category-item"
       >
         {{ category }}
       </li>
@@ -18,27 +18,32 @@
       type="text"
       v-model="searchQuery"
       placeholder="Search blogs..."
-      style="padding: 0.5rem; margin-bottom: 1rem; width: 100%;"
+      class="search-bar"
     />
 
     <!-- Blog List -->
-    <div v-if="filteredBlogs.length === 0">
+    <div v-if="filteredBlogs.length === 0" class="no-blogs">
       <p>No blogs found for the selected category or search query.</p>
     </div>
-    <ul v-else>
+    <ul v-else class="blog-list">
       <li v-for="post in filteredBlogs" :key="post.url" class="blog-item">
         <!-- Blog Title -->
         <a :href="post.url" class="blog-title">{{ post.title }}</a>
-        <!-- Tags Below Title -->
-        <div v-if="post.tags.length" class="blog-tags">
-          Tags:
-          <span
-            v-for="tag in post.tags"
-            :key="tag"
-            class="blog-tag"
-          >
-            {{ tag }}
+        <!-- Blog Metadata -->
+        <div class="blog-metadata">
+          <span class="blog-date">
+            {{ formatDate(post.date) }}
           </span>
+          <div v-if="post.tags.length" class="blog-tags">
+            Tags:
+            <span
+              v-for="tag in post.tags"
+              :key="tag"
+              class="blog-tag"
+            >
+              {{ tag }}
+            </span>
+          </div>
         </div>
       </li>
     </ul>
@@ -48,23 +53,69 @@
 <script setup>
 import { ref, computed, onMounted } from "vue";
 
+// Reactive state
 const blogs = ref([]);
-const categories = ref(["All", "Sustainability", "Human Centric","Industry 5.0 Tech","Case Study / Applications","Workforce development","Business Strategies","Resources"]);
+const categories = ref([
+  "All",
+  "Sustainability",
+  "Human Centric",
+  "Industry 5.0 Tech",
+  "Case Study / Applications",
+  "Workforce development",
+  "Business Strategies",
+  "Resources",
+]);
 const selectedCategory = ref("All");
 const searchQuery = ref("");
 
+// Utility function to format dates
+const formatDate = (date) => {
+  if (!date) return "Date not provided";
+  const options = { year: "numeric", month: "long", day: "numeric" };
+  return new Date(date).toLocaleDateString("en-US", options);
+};
+
 onMounted(() => {
-  const blogFiles = import.meta.glob('../docs/blog/*.md', { eager: true });
-  blogs.value = Object.entries(blogFiles).map(([path, module]) => {
-    const { frontmatter } = module;
+  const blogFiles = import.meta.glob("../docs/blog/*.md", { eager: true });
+
+  blogs.value = Object.entries(blogFiles).map(([path, mod]) => {
+    console.log("module for path:", path, mod);
+
+    // If `__pageData` is already an object (not a string), use it directly
+    let frontmatter = {};
+    if (mod.__pageData) {
+      // If it’s a string, parse it; if it’s an object, just use it
+      const pageData =
+        typeof mod.__pageData === "string"
+          ? JSON.parse(mod.__pageData)
+          : mod.__pageData;
+
+      frontmatter = pageData.frontmatter || {};
+    }
+
+    // Fall back if frontmatter is empty
+    if (!Object.keys(frontmatter).length && mod.frontmatter) {
+      frontmatter = mod.frontmatter;
+    } else if (!Object.keys(frontmatter).length && mod.default?.frontmatter) {
+      frontmatter = mod.default.frontmatter;
+    }
+
     return {
-      url: path.replace('../docs/blog', '/blog').replace('.md', '.html'),
-      title: frontmatter?.title || "Untitled Blog",
-      tags: frontmatter?.tags || []
+      url: path.replace("../docs/blog", "").replace(".md", ".html"),
+      title: frontmatter.title || "Untitled Blog",
+      tags: frontmatter.tags || ["Uncategorized"],
+      date: frontmatter.date || null,
     };
   });
+
+  console.log("Final Blogs Array:", blogs.value);
 });
 
+
+
+
+
+// Filter blogs based on category and search query
 const selectCategory = (category) => {
   selectedCategory.value = category;
 };
@@ -91,20 +142,50 @@ const filteredBlogs = computed(() => {
 <style scoped>
 .categories {
   margin-bottom: 1.5rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  padding: 0;
+  list-style: none;
 }
 
-.active {
+.category-item {
+  cursor: pointer;
+  font-weight: 500;
+  color: #555;
+}
+
+.category-item.active {
   font-weight: bold;
   color: #0073e6;
 }
 
+.search-bar {
+  padding: 0.5rem;
+  margin-bottom: 1rem;
+  width: 100%;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.no-blogs {
+  color: #777;
+}
+
+.blog-list {
+  list-style: none;
+  padding: 0;
+}
+
 .blog-item {
-  margin-bottom: 1.5rem;
+  margin-bottom: 2rem;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 1rem;
 }
 
 .blog-title {
-  font-size: 1.2rem;
-  font-weight: 600;
+  font-size: 1.4rem;
+  font-weight: bold;
   color: var(--vp-c-brand);
   text-decoration: none;
 }
@@ -113,9 +194,19 @@ const filteredBlogs = computed(() => {
   text-decoration: underline;
 }
 
-.blog-tags {
+.blog-metadata {
   margin-top: 0.5rem;
   font-size: 0.9rem;
+  color: #555;
+}
+
+.blog-date {
+  margin-right: 1rem;
+  font-style: italic;
+}
+
+.blog-tags {
+  margin-top: 0.5rem;
 }
 
 .blog-tag {

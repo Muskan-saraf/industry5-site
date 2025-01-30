@@ -1,8 +1,4 @@
----
-title: Blog
----
 
-# Blog
 
 
 <script setup>

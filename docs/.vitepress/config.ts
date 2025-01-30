@@ -1,6 +1,5 @@
 import { defineConfig } from 'vitepress';
 
-
 export default defineConfig({
   title: 'Industry 5.0 Hub',
   description: 'Your go-to resource for Industry 5.0 insights and tools.',
@@ -14,11 +13,10 @@ export default defineConfig({
   },
   markdown: {
     config: (md) => {
-      // Debugging frontmatter
+      // Hook to debug or manipulate frontmatter
       md.renderer.rules.frontmatter = (tokens, idx, options, env) => {
-        console.log('Frontmatter Debug:', env.frontmatter);
-        env.frontmatter = env.frontmatter || {};
-        return ''; // Do not render frontmatter directly
+        console.log('Frontmatter Debug:', env.frontmatter); // Logs frontmatter for debugging
+        return ''; // Prevent rendering frontmatter directly in the page
       };
     }
   }
