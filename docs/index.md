@@ -1,4 +1,4 @@
-<!-- Industry 5.0 Hub Homepage -->
+<!-- docs/index.md or similar homepage file -->
 
 # Welcome to the Industry 5.0 Hub
 
@@ -19,47 +19,34 @@ Learn from real-world Industry 5.0 examples.
 
 <script setup>
 import { ref, onMounted } from "vue";
+import BlogLatest from "../components/LatestBlog.vue";
 
+// Optional: If you still want to fetch some posts for other reasons:
 const posts = ref([]);
 
-onMounted(async () => {
-  const blogFiles = import.meta.glob('/blog/*.md', { eager: true });
+onMounted(() => {
+  // Example: If your blog markdown files are actually located in /docs/blog/*.md
+  // Adjust this path if your .md files are in a different folder
+  const blogFiles = import.meta.glob("/docs/blog/*.md", { eager: true });
 
-  console.log('Blog Files:', blogFiles); // Log all blog files detected
+  console.log("Blog Files:", blogFiles); // Check what’s detected
 
   const blogPosts = Object.entries(blogFiles).map(([path, module]) => {
-    const content = module.default || '';
-    console.log('Raw Content for:', path, '\n', content); // Log raw content for each file
+    // If you want to parse front matter or do something else, do it here.
+    // For now, just log the module:
+    console.log("Module for:", path, module);
 
-    // Extract the first line starting with #
-    const title = content
-      .split('\n')
-      .find((line) => line.trim().startsWith('#'))
-      ?.replace('#', '')
-      .trim();
-
-    console.log('Extracted Title for:', path, '\n', title); // Log the extracted title
-
-    if (!title) return null; // Skip files without a valid title
-
-    return {
-      url: path.replace('.md', ''), // Remove .md from the URL
-      title, // Extracted title
-    };
+    // Return a simplified object or do nothing:
+    return { path };
   });
 
-  console.log('Processed Blog Posts:', blogPosts); // Log final processed posts
-
-  posts.value = blogPosts.filter((post) => post !== null); // Remove null entries
+  console.log("Processed Blog Posts:", blogPosts);
+  posts.value = blogPosts;
 });
-
 </script>
 
-## Latest Blog Posts
-
-<div v-for="post in posts" :key="post.url" class="blog-item">
-  <a :href="post.url" class="blog-title">{{ post.title }}</a>
-</div>
+<!-- Render your LatestBlog component here -->
+<BlogLatest />
 
 <style scoped>
 .blog-item {

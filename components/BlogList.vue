@@ -13,33 +13,22 @@
       </li>
     </ul>
 
-    <!-- Search Bar -->
-    <input
-      type="text"
-      v-model="searchQuery"
-      placeholder="Search blogs..."
-      class="search-bar"
-    />
-
     <!-- Blog List -->
     <div v-if="filteredBlogs.length === 0" class="no-blogs">
       <p>No blogs found for the selected category or search query.</p>
     </div>
     <ul v-else class="blog-list">
       <li v-for="post in filteredBlogs" :key="post.url" class="blog-item">
-        <!-- Blog Title -->
         <a :href="post.url" class="blog-title">{{ post.title }}</a>
-        <!-- Blog Metadata -->
         <div class="blog-metadata">
-          <span class="blog-date">
-            {{ formatDate(post.date) }}
-          </span>
+          <span class="blog-date">{{ formatDate(post.date) }}</span>
           <div v-if="post.tags.length" class="blog-tags">
             Tags:
             <span
               v-for="tag in post.tags"
               :key="tag"
               class="blog-tag"
+              @click.stop="selectCategory(tag)"
             >
               {{ tag }}
             </span>
@@ -53,7 +42,6 @@
 <script setup>
 import { ref, computed, onMounted } from "vue";
 
-// Reactive state
 const blogs = ref([]);
 const categories = ref([
   "All",
@@ -66,78 +54,57 @@ const categories = ref([
   "Resources",
 ]);
 const selectedCategory = ref("All");
-const searchQuery = ref("");
 
-// Utility function to format dates
 const formatDate = (date) => {
   if (!date) return "Date not provided";
-  const options = { year: "numeric", month: "long", day: "numeric" };
+  const options = { 
+    year: "numeric", 
+    month: "long", 
+    day: "numeric",
+    timeZone: "UTC",
+  };
   return new Date(date).toLocaleDateString("en-US", options);
 };
 
 onMounted(() => {
   const blogFiles = import.meta.glob("../docs/blog/*.md", { eager: true });
-
-  blogs.value = Object.entries(blogFiles).map(([path, mod]) => {
-    console.log("module for path:", path, mod);
-
-    // If `__pageData` is already an object (not a string), use it directly
-    let frontmatter = {};
-    if (mod.__pageData) {
-      // If it’s a string, parse it; if it’s an object, just use it
-      const pageData =
-        typeof mod.__pageData === "string"
-          ? JSON.parse(mod.__pageData)
-          : mod.__pageData;
-
-      frontmatter = pageData.frontmatter || {};
-    }
-
-    // Fall back if frontmatter is empty
-    if (!Object.keys(frontmatter).length && mod.frontmatter) {
-      frontmatter = mod.frontmatter;
-    } else if (!Object.keys(frontmatter).length && mod.default?.frontmatter) {
-      frontmatter = mod.default.frontmatter;
-    }
-
-    return {
-      url: path.replace("../docs/blog", "").replace(".md", ".html"),
-      title: frontmatter.title || "Untitled Blog",
-      tags: frontmatter.tags || ["Uncategorized"],
-      date: frontmatter.date || null,
-    };
-  });
-
-  console.log("Final Blogs Array:", blogs.value);
+  blogs.value = Object.entries(blogFiles)
+    .map(([path, mod]) => {
+      let frontmatter = {};
+      if (mod.__pageData) {
+        const pageData =
+          typeof mod.__pageData === "string"
+            ? JSON.parse(mod.__pageData)
+            : mod.__pageData;
+        frontmatter = pageData.frontmatter || {};
+      }
+      const basePath = "/industry5-site";
+      return {
+        url: path.replace("../docs/blog", `${basePath}/blog`).replace(".md", ""),
+        title: frontmatter.title || "Untitled Blog",
+        tags: frontmatter.tags || [],
+        date: frontmatter.date || null,
+      };
+    })
+    .sort((a, b) => new Date(b.date) - new Date(a.date));
 });
 
-
-
-
-
-// Filter blogs based on category and search query
 const selectCategory = (category) => {
   selectedCategory.value = category;
 };
 
 const filteredBlogs = computed(() => {
   let filtered = blogs.value;
-
   if (selectedCategory.value !== "All") {
     filtered = filtered.filter((blog) =>
       blog.tags.includes(selectedCategory.value)
     );
   }
-
-  if (searchQuery.value) {
-    filtered = filtered.filter((blog) =>
-      blog.title.toLowerCase().includes(searchQuery.value.toLowerCase())
-    );
-  }
-
   return filtered;
 });
 </script>
+
+
 
 <style scoped>
 .categories {
@@ -216,5 +183,6 @@ const filteredBlogs = computed(() => {
   padding: 0.2rem 0.4rem;
   border-radius: 4px;
   margin-right: 0.5rem;
+  cursor: pointer;
 }
 </style>
