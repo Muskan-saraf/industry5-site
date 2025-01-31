@@ -1,7 +1,7 @@
 ---
 title: "Putting People First: The Human-Centric Paradigm of Industry 5.0"
 date: "2025-01-31"
-tags: ["Human Centric, Case Study / Applications"]
+tags: ["Human Centric", "Case Study / Applications"]
 ---
 
 # Putting People First: The Human-Centric Paradigm of Industry 5.0
