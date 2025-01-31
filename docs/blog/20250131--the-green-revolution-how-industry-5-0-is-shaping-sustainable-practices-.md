@@ -1,5 +1,5 @@
 ---
-title: ""The Green Revolution: How Industry 5.0 is Shaping Sustainable Practices""
+title: "The Green Revolution: How Industry 5.0 is Shaping Sustainable Practices"
 date: "2025-01-31"
 tags: ["Sustainability"]
 ---
