@@ -8,7 +8,35 @@
     <link rel="stylesheet" href="/industry5-site/assets/style.9e7d9bce.css">
     <link rel="modulepreload" href="/industry5-site/assets/app.53239dd4.js">
     
-    <link rel="stylesheet" href="/styles/custom.css">
+    <style>
+      /* Apply a gradient background to the header */
+      header.VPNav {
+        background: linear-gradient(135deg, #3498db, #2ecc71) !important;
+        color: white !important;
+      }
+
+      /* Style navigation links inside the header */
+      header.VPNav a {
+        color: white !important;
+        text-decoration: none;
+        font-weight: bold;
+        transition: color 0.3s, transform 0.3s;
+      }
+
+      /* Hover effect for links */
+      header.VPNav a:hover {
+        color: gray !important;
+        text-shadow: 0 0 5px rgba(255, 255, 255, 0.8);
+        transform: scale(1.1);
+      }
+
+      /* Make header responsive */
+      @media (max-width: 768px) {
+        header.VPNav {
+          font-size: 0.9em !important;
+        }
+      }
+      </style>
   <script id="check-dark-light">(()=>{const e=localStorage.getItem("vitepress-theme-appearance")||"",a=window.matchMedia("(prefers-color-scheme: dark)").matches;(!e||e==="auto"?a:e==="dark")&&document.documentElement.classList.add("dark")})();</script>
   </head>
   <body>
