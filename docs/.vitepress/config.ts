@@ -6,9 +6,11 @@ export default defineConfig({
   base: '/industry5-site/',
   themeConfig: {
     nav: [
-      { text: 'Getting Started', link: '/getting-started' },
+    
+      {text: 'About', link: '/about'},
+      { text: 'Blog', link: '/blog' },
       { text: 'Store', link: '/Store' },
-      { text: 'Blog', link: '/blog' }
+      { text: 'Getting Started', link: '/getting-started' }
     ]
   },
   head: [
