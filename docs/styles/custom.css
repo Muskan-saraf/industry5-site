@@ -1,0 +1,29 @@
+header.vp-nav[data-v-8f7cd5e4] {
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color)) !important;
+    --primary-color: #3498db;
+    --secondary-color: #2ecc71;
+    color: white;
+  }
+  
+  /* Navigation links styling */
+  .vp-nav a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s, transform 0.3s;
+  }
+  
+  /* Hover effect for navigation links */
+  .vp-nav a:hover {
+    color: #f1c40f; /* Gold hover color */
+    transform: scale(1.1); /* Slightly enlarge */
+    text-shadow: 0 0 5px rgba(255, 255, 255, 0.8);
+  }
+  
+  /* Responsive design */
+  @media (max-width: 768px) {
+    .vp-nav {
+      font-size: 0.9em;
+    }
+  }
+  
