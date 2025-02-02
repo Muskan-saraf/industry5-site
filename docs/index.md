@@ -6,9 +6,10 @@ Discover how humans and advanced technologies collaborate to create a sustainabl
 
 <div class="ad-banner">
   <a href="https://www.6sbot.com/" target="_blank">
-    <img src="Public/images/6sbot.png" alt="6sbot Advertisement">
+    <img src="/images/6sbot.png" alt="6sbot Advertisement">
   </a>
 </div>
+
 
 <script setup>
 import { ref, onMounted } from "vue";
