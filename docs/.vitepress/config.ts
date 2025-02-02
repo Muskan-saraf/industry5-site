@@ -22,21 +22,16 @@ export default defineConfig({
       `
       /* Set the body background to the image */
       body {
-      background: linear-gradient(rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.8)), 
-              url('/image-background.jpg') no-repeat center/cover;
+        background: linear-gradient(rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.8)) no-repeat center/cover;
         background-attachment: fixed; /* Ensures the background stays fixed while scrolling */
-        
-
       }
 
       /* Style for the main content container */
       .VPContent {
-        background: white; /* Ensure content has a white background */
-        max-width: 1200px; /* Limit the content width */
-        margin: 0 auto; /* Center the content horizontally */
-        padding: 20px; /* Add padding inside the content area */
-        border-radius: 8px; /* Optional: Add rounded corners */
-        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Optional: Add a shadow for better contrast */
+        background: white;
+        max-width: 90%;
+        border-radius: 8px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
       }
 
       /* Apply a gradient background to the header */
@@ -71,7 +66,7 @@ export default defineConfig({
         }
 
         .VPContent {
-          margin: 10px; /* Add margin on smaller screens */
+          margin: 20px 10px; /* Add smaller margin on smaller screens */
         }
       }
       `,
