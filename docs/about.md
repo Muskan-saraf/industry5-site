@@ -4,10 +4,9 @@
 ## Our Mission  
 Industry 5.0 Insights is dedicated to providing cutting-edge knowledge, case studies, and research on the next evolution of industrial transformation. We bridge the gap between human creativity and AI-driven automation.
 
-
 <div class="ad-banner">
   <a href="https://www.6sbot.com/" target="_blank">
-    <img src="/images/6sbot.png" alt="6sbot Advertisement">
+    <img src=".vitepress/public/images/6sbot.png" alt="6sbot Advertisement">
   </a>
 </div>
 
