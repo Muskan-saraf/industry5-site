@@ -29,10 +29,16 @@ export default defineConfig({
       /* Style for the main content container */
       .VPContent {
         background: white;
-        max-width: 90%;
+        max-width: 1200px;
+        padding-top: 20px;
         border-radius: 8px;
         box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
       }
+        .VPContent .content {
+        max-width: 100%;
+      }
+        
+
 
       /* Apply a gradient background to the header */
       header.VPNav {
@@ -47,7 +53,6 @@ export default defineConfig({
       /* Style navigation links inside the header */
       header.VPNav a {
         color: white !important;
-        text-decoration: none;
         font-weight: bold;
         transition: color 0.3s, transform 0.3s;
       }
