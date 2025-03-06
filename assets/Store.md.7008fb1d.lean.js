@@ -1,1 +1,0 @@
-import{_ as r,o as e,c as a,a as t}from"./app.859db175.js";const f=JSON.parse('{"title":"Industry 5.0 Resources","description":"","frontmatter":{},"headers":[],"relativePath":"Store.md"}'),o={name:"Store.md"},n=t("",6),s=[n];function i(l,d,h,u,c,p){return e(),a("div",null,s)}const y=r(o,[["render",i]]);export{f as __pageData,y as default};
