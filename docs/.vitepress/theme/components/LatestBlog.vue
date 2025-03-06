@@ -48,7 +48,8 @@ const formatDate = (date) => {
 
 // Fetch blogs and sort them by date
 onMounted(() => {
-  const blogFiles = import.meta.glob("../docs/blog/*.md", { eager: true });
+  const blogFiles = import.meta.glob("/blog/*.md", { eager: true });
+
 
   blogs.value = Object.entries(blogFiles)
     .map(([path, mod]) => {

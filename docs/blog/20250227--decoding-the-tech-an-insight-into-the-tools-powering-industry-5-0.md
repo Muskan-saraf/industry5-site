@@ -1,5 +1,5 @@
 ---
-title: "   - Decoding the Tech: An Insight into the Tools Powering Industry 5.0"
+title: "Decoding the Tech: An Insight into the Tools Powering Industry 5.0"
 date: "2025-02-27"
 tags: ["Workforce Development"]
 ---

@@ -1,20 +1,13 @@
 <!-- docs/index.md or similar homepage file -->
 
-# Welcome to the Industry 5.0 Hub
 
-Discover how humans and advanced technologies collaborate to create a sustainable and personalized future.
 
-<div style="margin-bottom: 2rem;"></div>
-
-<div class="ad-banner">
-  <a href="https://www.6sbot.com/" target="_blank">
-    <img src=".vitepress/public/images/6sbot.png" alt="6sbot Advertisement">
-  </a>
-</div>
 
 <script setup>
 import { ref, onMounted } from "vue";
-import BlogLatest from "../components/LatestBlog.vue";
+import BlogLatest from "@theme/components/BlogList.vue";
+
+
 
 // Optional: If you still want to fetch some posts for other reasons:
 const posts = ref([]);
@@ -51,7 +44,7 @@ onMounted(() => {
 .blog-title {
   font-size: 1.1rem;
   font-weight: 600;
-  color: var(--vp-c-brand);
+  color: balck --important;
   text-decoration: none;
 }
 

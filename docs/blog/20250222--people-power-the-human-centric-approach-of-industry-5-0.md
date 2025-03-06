@@ -1,5 +1,5 @@
 ---
-title: "   - People Power: The Human-Centric Approach of Industry 5.0"
+title: "People Power: The Human-Centric Approach of Industry 5.0"
 date: "2025-02-22"
 tags: ["Resources"]
 ---

@@ -1,5 +1,5 @@
 ---
-title: "   - The Tech Titans of Industry 5.0: A Look at the Leading Innovations"
+title: "   The Tech Titans of Industry 5.0: A Look at the Leading Innovations"
 date: "2025-03-01"
 tags: ["Resources"]
 ---

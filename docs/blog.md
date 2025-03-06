@@ -7,7 +7,7 @@
 <div style="margin-bottom: 2rem;"></div>
 
 <script setup>
-import BlogList from '../components/BlogList.vue'
+import BlogList from '../.vitepress/theme/components/BlogList.vue'
 </script>
 
 <BlogList />

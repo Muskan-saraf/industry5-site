@@ -1,5 +1,5 @@
 ---
-title: "   - Industry 5.0: Balancing Automation and Human Touch"
+title: " Industry 5.0: Balancing Automation and Human Touch"
 date: "2025-02-23"
 tags: ["Sustainability"]
 ---

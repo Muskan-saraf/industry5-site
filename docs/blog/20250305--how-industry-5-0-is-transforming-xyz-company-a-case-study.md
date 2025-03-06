@@ -1,5 +1,5 @@
 ---
-title: "   - How Industry 5.0 is Transforming XYZ Company: A Case Study"
+title: "   How Industry 5.0 is Transforming XYZ Company: A Case Study"
 date: "2025-03-05"
 tags: ["Case Study / Applications"]
 ---

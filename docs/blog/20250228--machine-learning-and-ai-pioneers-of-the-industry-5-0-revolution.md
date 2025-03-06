@@ -1,5 +1,5 @@
 ---
-title: "   - Machine Learning and AI: Pioneers of the Industry 5.0 Revolution"
+title: "   Machine Learning and AI: Pioneers of the Industry 5.0 Revolution"
 date: "2025-02-28"
 tags: ["Business Strategies"]
 ---

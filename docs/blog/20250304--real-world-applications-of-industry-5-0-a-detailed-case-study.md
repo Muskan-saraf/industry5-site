@@ -1,5 +1,5 @@
 ---
-title: "   - Real-World Applications of Industry 5.0: A Detailed Case Study"
+title: "   Real-World Applications of Industry 5.0: A Detailed Case Study"
 date: "2025-03-04"
 tags: ["Industry 5.0 Tech"]
 ---
