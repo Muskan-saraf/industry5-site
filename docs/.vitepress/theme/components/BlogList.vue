@@ -46,7 +46,7 @@ onMounted(() => {
       let frontmatter = mod.frontmatter || mod.__pageData?.frontmatter || mod.default?.frontmatter || {};
 
       return {
-        url: path.replace("/docs/blog", "/industry5-site/blog").replace(".md", ""),
+        url: path.replace("/blog", "/industry5-site/blog").replace(".md", ""),
         title: frontmatter.title || "Untitled Blog",
         tags: frontmatter.tags || [],
         date: frontmatter.date || null,
