@@ -4,7 +4,7 @@
     <div class="header-container">
       <!-- Left Section: Logo (Positioned Above Content, Slightly Left) -->
       <div class="logo-container">
-        <a href="/" class="logo">Industry 5.0 Hub</a>
+        <a href="/industry5-site/" class="logo">Industry 5.0 Hub</a>
       </div>
 
       <!-- Spacer to Maintain Positioning -->
@@ -12,8 +12,8 @@
 
       <!-- Right Section: Buttons (Positioned Above Content, Slightly Right) -->
       <div class="button-container">
-        <a href="/subscribe" class="header-btn">📩 Subscribe</a>
-        <a href="/contact" class="header-btn">Contact</a>
+        <a href="/industry5-site/subscribe" class="header-btn">📩 Subscribe</a>
+        <a href="/industry5-site/contact" class="header-btn">Contact</a>
       </div>
     </div>
 
