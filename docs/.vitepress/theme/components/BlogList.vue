@@ -67,9 +67,7 @@ const filteredBlogs = computed(() => {
 </script>
 
 <style scoped>
-.no-blogs {
-  color: #777;
-}
+
 
 .blog-list {
   list-style: none;

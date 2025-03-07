@@ -29,39 +29,3 @@ onMounted(() => {
 <!-- ✅ Render Blog List Below Ad -->
 <BlogLatest />
 
-<style scoped>
-/* ✅ Ensure proper ad spacing */
-.ad-banner {
-  text-align: center;
-  margin: 20px auto;
-  max-width: 900px;
-  padding: 15px;
-  background: #fff; /* White background */
-  border-radius: 8px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-}
-
-.ad-banner img {
-  max-width: 100%;
-  height: auto;
-  border-radius: 8px;
-  display: block;
-  margin: 0 auto;
-}
-
-/* ✅ Blog List Styles */
-.blog-item {
-  margin-bottom: 1.5rem;
-}
-
-.blog-title {
-  font-size: 1.1rem;
-  font-weight: 600;
-  color: black !important;
-  text-decoration: none;
-}
-
-.blog-title:hover {
-  text-decoration: underline;
-}
-</style>

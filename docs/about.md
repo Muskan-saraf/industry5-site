@@ -54,38 +54,3 @@ We ensure high-quality, data-driven, and unbiased content to guide businesses an
 📩 [Email Us](mailto:muskan@actualreality.tech)  
 🔗 Follow us on [LinkedIn](#)
 
-<style>
-.ad-banner img {
-  max-width: 100%;
-  border-radius: 8px;
-  margin: 1rem 0;
-}
-
-.advertise-section {
-  border: 2px dashed red;
-  padding: 16px;
-  margin: 2rem 0;
-  text-align: center;
-  background-color: #fff8f8;
-}
-
-.advertise-section p {
-  font-size: 1.2rem;
-  margin-bottom: 1rem;
-  color: #333;
-}
-
-.advertise-btn {
-  background-color: red;
-  color: white;
-  padding: 10px 20px;
-  text-decoration: none;
-  font-weight: bold;
-  border-radius: 8px;
-  transition: background-color 0.3s ease;
-}
-
-.advertise-btn:hover {
-  background-color: darkred;
-}
-</style>

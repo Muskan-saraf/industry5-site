@@ -1,5 +1,5 @@
 ---
-title: ""
+title: "My Journey"
 date: "2025-03-07"
 tags: ["Business Strategies"]
 ---

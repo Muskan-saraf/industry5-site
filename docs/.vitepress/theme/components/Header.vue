@@ -1,13 +1,23 @@
 <template>
   <header>
-    <!-- Logo Section -->
-    <div class="logo-container">
-      <div class="logo">
-        <a href="/">Industry 5.0 Hub</a>
+    <!-- Header Container (Contains Logo & Buttons) -->
+    <div class="header-container">
+      <!-- Left Section: Logo (Positioned Above Content, Slightly Left) -->
+      <div class="logo-container">
+        <a href="/" class="logo">Industry 5.0 Hub</a>
+      </div>
+
+      <!-- Spacer to Maintain Positioning -->
+      <div class="spacer"></div>
+
+      <!-- Right Section: Buttons (Positioned Above Content, Slightly Right) -->
+      <div class="button-container">
+        <button class="header-btn">Subscribe</button>
+        <button class="header-btn">Contact</button>
       </div>
     </div>
 
-    <!-- Navigation Menu with Categories -->
+    <!-- Navigation Menu -->
     <nav class="menu-container">
       <div class="menu">
         <a 
@@ -30,7 +40,7 @@ import { ref } from "vue";
 const categories = ref([
     "Industry 5.0 Tech",
     "Human Centric",
-  "Sustainability"
+    "Sustainability"
 ]);
 
 const selectedCategory = ref("All");
@@ -44,30 +54,62 @@ const selectCategory = (category) => {
 </script>
 
 <style scoped>
-/* ✅ Logo Section (Light Blue) */
-.logo-container {
+/* ✅ Header Container */
+.header-container {
   width: 100%;
   background: #4169E1; /* Light Blue */
   display: flex;
-
-  justify-content: center;
   align-items: center;
-  padding: 15px 0;
+  padding: 15px 5%; /* 5% padding makes it responsive */
 }
 
-/* ✅ Logo Styling */
-.logo a {
-  font-size: 60px;
+/* ✅ Left-Aligned Logo */
+.logo-container {
+  display: flex;
+  flex: 1; /* Ensures it stays slightly left */
+}
+
+.logo {
+  font-size: 30px;
   font-weight: bold;
   font-family: Decorative;
   color: white;
   text-decoration: none;
 }
 
-/* ✅ Menu Section (Black) */
+/* ✅ Spacer for Centering */
+.spacer {
+  flex: 2; /* Keeps the layout responsive */
+}
+
+/* ✅ Right-Aligned Buttons */
+.button-container {
+  display: flex;
+  gap: 15px;
+  flex: 1; /* Ensures buttons stay on the right */
+  justify-content: flex-end;
+}
+
+/* ✅ Buttons */
+.header-btn {
+  background: white;
+  color: #4169E1;
+  border: none;
+  padding: 8px 16px;
+  font-size: 14px;
+  font-weight: bold;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.header-btn:hover {
+  background: #f0f0f0;
+}
+
+/* ✅ Menu Section */
 .menu-container {
   width: 100%;
-  background: #FEFEFA; /* Black */
+  background: #FEFEFA;
   display: flex;
   justify-content: center;
 }
@@ -77,7 +119,7 @@ const selectCategory = (category) => {
   display: flex;
   gap: 20px;
   justify-content: center;
-  max-width: 1200px; /* Align with content */
+  max-width: 1200px;
   width: 100%;
   padding: 10px 0;
 }
@@ -92,6 +134,24 @@ const selectCategory = (category) => {
 }
 
 .menu a:hover {
-  color: #4169E1; /* Light Blue Hover Effect */
+  color: #4169E1;
+}
+
+/* ✅ Make it Fully Responsive */
+@media (max-width: 768px) {
+  .header-container {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .logo-container, .button-container {
+    flex: none;
+    margin-bottom: 10px;
+  }
+
+  .button-container {
+    justify-content: center;
+  }
 }
 </style>
