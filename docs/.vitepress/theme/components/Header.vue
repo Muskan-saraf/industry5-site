@@ -2,7 +2,10 @@
   <header>
     <div class="header-container">
       <div class="logo-container">
-        <a href="/industry5-site/" class="logo">Industry 5.0 Hub</a>
+        <!-- ✅ Clicking the logo resets selected tag (Shows all blogs) -->
+        <a href="/industry5-site/" class="logo" @click.prevent="resetTag">
+          Industry 5.0 Hub
+        </a>
       </div>
 
       <div class="spacer"></div>
@@ -18,8 +21,10 @@
         <a
           v-for="category in categories"
           :key="category"
-          :href="`/industry5-site/blog/${category.replace(/\s+/g, '-').toLowerCase()}`"
+          href="#"
           class="menu-item"
+          :class="{ active: category === selectedTag }"
+          @click.prevent="selectCategory(category)"
         >
           {{ category }}
         </a>
@@ -29,8 +34,25 @@
 </template>
 
 <script setup>
+import { computed } from "vue";
+import { useTagStore } from "../composables/useTagStore"; // ✅ Import shared state
+
+const { selectedTag, selectTag } = useTagStore();
+
+// ✅ Menu categories that should filter blogs
 const categories = ["Industry 5.0 Tech", "Human Centric", "Sustainability"];
+
+// ✅ Function to reset the selected tag (Show all blogs)
+const resetTag = () => {
+  selectTag(null);
+};
+
+// ✅ Function to select a category and filter blogs
+const selectCategory = (category) => {
+  selectTag(category);
+};
 </script>
+
 
 
 

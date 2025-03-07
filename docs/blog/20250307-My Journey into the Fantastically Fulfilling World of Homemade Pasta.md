@@ -4,8 +4,6 @@ date: "2025-03-07"
 tags: ["Business Strategies"]
 ---
 
-# 
-
 
 
 If you would have asked me a year ago if I ever envisioned myself, countertop dusted with flour, hands creating little parcels of culinary delight in the form of pasta, I would have probably laughed you right out of the kitchen.

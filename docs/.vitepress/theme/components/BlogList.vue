@@ -1,72 +1,128 @@
 <template>
-  <div>
-    <!-- Blog List -->
-    <div v-if="filteredBlogs.length === 0" class="no-blogs">
-      <p>No blogs found for the selected category.</p>
-    </div>
-    <ul v-else class="blog-list">
-      <li v-for="post in filteredBlogs" :key="post.url" class="blog-item">
-        <a :href="post.url" class="blog-title">{{ post.title }}</a>
+  <div v-if="filteredBlogs.length > 0" class="latest-blogs-container">
+    <ul class="blog-list">
+      <li v-for="(blog, index) in filteredBlogs" :key="index" class="blog-item">
+        <a :href="blog.url" class="blog-title">{{ blog.title }}</a>
+
         <div class="blog-metadata">
-          <span class="blog-date">{{ formatDate(post.date) }}</span>
-          <div v-if="post.tags.length" class="blog-tags">
+          <span class="blog-date">{{ formatDate(blog.date) }}</span>
+          <div v-if="blog.tags.length" class="blog-tags">
             Tags:
-            <span v-for="tag in post.tags" :key="tag" class="blog-tag">
+            <span
+              v-for="tag in blog.tags"
+              :key="tag"
+              class="blog-tag"
+              @click="selectTag(tag)"
+            >
               {{ tag }}
             </span>
           </div>
         </div>
+
+        <!-- ✅ Display the first 3 lines of content -->
+        <p class="blog-excerpt">
+          {{ getExcerpt(blog.content, 3) }} 
+          <a :href="blog.url" class="read-more">Read More</a>
+        </p>
       </li>
     </ul>
+  </div>
+  <div v-else class="no-blog-container">
+    <p>No blog found.</p>
   </div>
 </template>
 
 <script setup>
-import { ref, computed, onMounted } from "vue";
+import { computed } from "vue";
+import { useTagStore } from "../composables/useTagStore";
+import { useBlogData } from "../composables/useBlogData";
 
-// ✅ Props for category filtering
-const props = defineProps(["selectedCategory"]);
-const blogs = ref([]);
+const { selectedTag } = useTagStore();
+const { blogs } = useBlogData();
 
-// ✅ Function to format date
+// Filter blogs based on selected tag
+const filteredBlogs = computed(() => {
+  if (!selectedTag.value) return blogs.value;
+  return blogs.value.filter((blog) => blog.tags.includes(selectedTag.value));
+});
+
+// Format Date Utility
 const formatDate = (date) => {
   if (!date) return "Date not provided";
-  return new Date(date).toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" });
+  const options = {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+    timeZone: "UTC",
+  };
+  return new Date(date).toLocaleDateString("en-US", options);
 };
 
-// ✅ Fetch blog metadata
-onMounted(() => {
-  const blogFiles = import.meta.glob("/blog/*.md", { eager: true });
+// ✅ Extract first 3 lines of the blog content
+const getExcerpt = (content, lineCount = 3) => {
+  if (!content) return "No content available.";
 
-  blogs.value = Object.entries(blogFiles)
-    .map(([path, mod]) => {
-      console.log("Blog Module:", mod); // Debugging output
+  // ✅ Split content into lines, remove empty lines
+  const lines = content.split("\n").filter((line) => line.trim() !== "");
 
-      // ✅ Fix: Extract frontmatter properly
-      let frontmatter = mod.frontmatter || mod.__pageData?.frontmatter || mod.default?.frontmatter || {};
+  // ✅ Get only the first `lineCount` lines
+  const excerpt = lines.slice(0, lineCount).join(" ");
 
-      return {
-        url: path.replace("/blog", "/industry5-site/blog").replace(".md", ""),
-        title: frontmatter.title || "Untitled Blog",
-        tags: frontmatter.tags || [],
-        date: frontmatter.date || null,
-      };
-    })
-    .sort((a, b) => new Date(b.date) - new Date(a.date));
-
-  console.log("Processed Blogs:", blogs.value); // ✅ Debugging
-});
-
-// ✅ Filter blogs based on category
-const filteredBlogs = computed(() => {
-  if (!props.selectedCategory || props.selectedCategory === "All") {
-    return blogs.value;
-  }
-  return blogs.value.filter((blog) => blog.tags.includes(props.selectedCategory));
-});
+  return excerpt.length > 0 ? excerpt + "..." : "No content available.";
+};
 </script>
 
 <style scoped>
+
+/* ✅ Tag Filter Section */
+.tag-filter {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px; /* Add spacing between buttons */
+  margin-bottom: 20px;
+}
+
+.tag-button {
+  background: #f0f0f0;
+  color: #555;
+  padding: 8px 16px;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+  font-size: 14px;
+  transition: background 0.2s;
+}
+
+.tag-button:hover {
+  background: #ddd;
+}
+
+.tag-button.active {
+  background: #4169E1;
+  color: white;
+}
+
+/* ✅ Make tags inside blogs clickable with spacing */
+.blog-tags {
+  margin-top: 0.5rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px; /* Space between tags */
+}
+
+.blog-tag {
+  display: inline-block;
+  background: #f0f0f0;
+  color: #555;
+  padding: 0.3rem 0.8rem;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.blog-tag:hover {
+  background: #ddd;
+}
 
 
 .blog-list {
