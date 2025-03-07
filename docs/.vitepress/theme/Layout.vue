@@ -2,18 +2,20 @@
 import Header from "./components/Header.vue";
 import Footer from "./components/Footer.vue";
 import AdSection from "./components/AdSection.vue";
-import { Content } from "vitepress";
+import { Content, useData } from "vitepress";
+
+const { page } = useData();
+
+
 </script>
 
 <template>
   <div>
-    <!-- ✅ Fixed Header -->
+    <!-- ✅ Header (keeps it visible) -->
     <Header />
 
-    <!-- ✅ Add spacing to push content down -->
-    -<div class="spacer"></div>
 
-    <!-- ✅ Ad Section (Properly Separated) -->
+    <!-- ✅ Ad Section (Only shown on other pages) -->
     <div class="ad-wrapper">
       <AdSection />
     </div>
@@ -21,32 +23,28 @@ import { Content } from "vitepress";
     <!-- ✅ Main Content -->
     <div class="container">
       <main>
-        <Content /> <!-- ✅ Loads Markdown content -->
+        <Content />
       </main>
     </div>
 
-    <!-- ✅ Footer -->
+    <!-- ✅ Footer (Always Visible) -->
     <Footer />
   </div>
 </template>
 
 <style scoped>
-/* ✅ Push content down to avoid overlap */
 .spacer {
-  height: 100px; /* Adjust this to match your header height */
+  height: 100px;
 }
 
-/* ✅ Ensure Ad Section is correctly positioned */
 .ad-wrapper {
   margin-top: 20px;
   display: flex;
   justify-content: center;
-
 }
 
-/* ✅ Ensure content is not hidden under navbar */
 .container {
-  max-width: 1200px;
+  max-width: 900px;
   margin: 0 auto;
   padding: 20px;
   background: white;
@@ -56,15 +54,5 @@ import { Content } from "vitepress";
 
 main {
   padding: 20px;
-}
-
-/* ✅ Fixed Header */
-header {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  z-index: 1000;
-  background: #4169E1;
 }
 </style>

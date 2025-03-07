@@ -12,8 +12,8 @@
 
       <!-- Right Section: Buttons (Positioned Above Content, Slightly Right) -->
       <div class="button-container">
-        <button class="header-btn">Subscribe</button>
-        <button class="header-btn">Contact</button>
+        <a href="/subscribe" class="header-btn">📩 Subscribe</a>
+        <a href="/contact" class="header-btn">Contact</a>
       </div>
     </div>
 
