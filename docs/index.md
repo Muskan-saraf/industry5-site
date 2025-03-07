@@ -11,7 +11,7 @@ const posts = ref([]);
 onMounted(() => {
   // Example: If your blog markdown files are actually located in /docs/blog/*.md
   // Adjust this path if your .md files are in a different folder
-  const blogFiles = import.meta.glob("/docs/blog/*.md", { eager: true });
+  const blogFiles = import.meta.glob("/blog/*.md", { eager: true });
 
   console.log("Blog Files:", blogFiles); // Check what’s detected
 

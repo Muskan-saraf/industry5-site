@@ -1,30 +1,24 @@
 <template>
   <header>
-    <!-- Header Container (Contains Logo & Buttons) -->
     <div class="header-container">
-      <!-- Left Section: Logo (Positioned Above Content, Slightly Left) -->
       <div class="logo-container">
         <a href="/industry5-site/" class="logo">Industry 5.0 Hub</a>
       </div>
 
-      <!-- Spacer to Maintain Positioning -->
       <div class="spacer"></div>
 
-      <!-- Right Section: Buttons (Positioned Above Content, Slightly Right) -->
       <div class="button-container">
         <a href="/industry5-site/subscribe" class="header-btn">📩 Subscribe</a>
         <a href="/industry5-site/contact" class="header-btn">Contact</a>
       </div>
     </div>
 
-    <!-- Navigation Menu -->
     <nav class="menu-container">
       <div class="menu">
-        <a 
-          v-for="category in categories" 
+        <a
+          v-for="category in categories"
           :key="category"
-          @click.prevent="selectCategory(category)"
-          :class="{ active: selectedCategory === category }"
+          :href="`/industry5-site/blog/${category.replace(/\s+/g, '-').toLowerCase()}`"
           class="menu-item"
         >
           {{ category }}
@@ -35,23 +29,11 @@
 </template>
 
 <script setup>
-import { ref } from "vue";
-
-const categories = ref([
-    "Industry 5.0 Tech",
-    "Human Centric",
-    "Sustainability"
-]);
-
-const selectedCategory = ref("All");
-
-// Emit the selected category to parent
-const emit = defineEmits(["categorySelected"]);
-const selectCategory = (category) => {
-  selectedCategory.value = category;
-  emit("categorySelected", category);
-};
+const categories = ["Industry 5.0 Tech", "Human Centric", "Sustainability"];
 </script>
+
+
+
 
 <style scoped>
 /* ✅ Header Container */

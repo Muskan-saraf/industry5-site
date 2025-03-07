@@ -6,7 +6,9 @@ import { Content, useData } from "vitepress";
 
 const { page } = useData();
 
-
+// ✅ List of pages where the ad should be hidden
+const hideAdOnPages = ["subscribe", "contact"];
+const shouldHideAd = hideAdOnPages.includes(page.value.relativePath?.replace(".md", ""));
 </script>
 
 <template>
@@ -16,7 +18,7 @@ const { page } = useData();
 
 
     <!-- ✅ Ad Section (Only shown on other pages) -->
-    <div class="ad-wrapper">
+    <div class="ad-wrapper" v-if="!shouldHideAd">
       <AdSection />
     </div>
 
