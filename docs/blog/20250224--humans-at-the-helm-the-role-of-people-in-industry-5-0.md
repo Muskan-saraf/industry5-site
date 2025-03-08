@@ -2,6 +2,7 @@
 title: "   - Humans at the Helm: The Role of People in Industry 5.0"
 date: "2025-02-24"
 tags: ["Human Centric"]
+content: "This case study explores how human-centric approaches impact real-world applications. We look at practical industry use cases..."
 ---
 
 #    - Humans at the Helm: The Role of People in Industry 5.0

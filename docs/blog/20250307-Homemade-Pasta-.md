@@ -2,6 +2,7 @@
 title: "My Journey into the Fantastically Fulfilling World of Homemade Pasta"
 date: "2025-03-07"
 tags: ["Business Strategies"]
+content: "This case study explores how human-centric approaches impact real-world applications. We look at practical industry use cases..."
 ---
 
 # My Journey into the Fantastically Fulfilling World of Homemade Pasta

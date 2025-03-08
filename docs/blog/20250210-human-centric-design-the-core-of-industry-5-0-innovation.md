@@ -2,6 +2,7 @@
 title: "Human-Centric Design: The Core of Industry 5.0 Innovation"
 date: "2025-02-10"
 tags: ["Human Centric"]
+content: "This case study explores how human-centric approaches impact real-world applications. We look at practical industry use cases..."
 ---
 
 # Human-Centric Design: The Core of Industry 5.0 Innovation

@@ -2,6 +2,7 @@
 title: "Human Centric: "
 date: "2025-02-21"
 tags: ["Business Strategies"]
+content: "This case study explores how human-centric approaches impact real-world applications. We look at practical industry use cases..."
 ---
 
 # Human Centric: 

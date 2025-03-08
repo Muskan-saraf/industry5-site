@@ -2,6 +2,7 @@
 title: "   The Tech Titans of Industry 5.0: A Look at the Leading Innovations"
 date: "2025-03-01"
 tags: ["Resources"]
+content: "This case study explores how human-centric approaches impact real-world applications. We look at practical industry use cases..."
 ---
 
 #    - The Tech Titans of Industry 5.0: A Look at the Leading Innovations

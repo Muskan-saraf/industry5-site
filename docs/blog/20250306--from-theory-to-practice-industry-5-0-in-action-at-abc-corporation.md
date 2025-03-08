@@ -2,6 +2,7 @@
 title: "   From Theory to Practice: Industry 5.0 in Action at ABC Corporation"
 date: "2025-03-06"
 tags: ["Workforce Development"]
+content: "This case study explores how human-centric approaches impact real-world applications. We look at practical industry use cases..."
 ---
 
 #    From Theory to Practice: Industry 5.0 in Action at ABC Corporation

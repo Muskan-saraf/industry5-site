@@ -2,6 +2,7 @@
 title: "Business Strategies for Thriving in the Progressive World of Industry 5.0"
 date: "2025-02-14"
 tags: ["Business Strategies"]
+content: "This case study explores how human-centric approaches impact real-world applications. We look at practical industry use cases..."
 ---
 
 # Business Strategies for Thriving in the Progressive World of Industry 5.0

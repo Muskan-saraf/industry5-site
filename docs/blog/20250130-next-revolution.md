@@ -3,6 +3,7 @@ title: "What is Industry 5.0? The Next Revolution in Technology and Humanity
 "
 date: "2025-01-30"
 tags: ["Human Centric"]
+content: "This case study explores how human-centric approaches impact real-world applications. We look at practical industry use cases..."
 ---
 
 # What is Industry 5.0? The Next Revolution in Technology and Humanity

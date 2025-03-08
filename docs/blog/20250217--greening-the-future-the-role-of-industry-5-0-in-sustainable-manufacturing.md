@@ -2,6 +2,7 @@
 title: "   - Greening the Future: The Role of Industry 5.0 in Sustainable Manufacturing"
 date: "2025-02-17"
 tags: ["Human Centric"]
+content: "This case study explores how human-centric approaches impact real-world applications. We look at practical industry use cases..."
 ---
 
 #    - Greening the Future: The Role of Industry 5.0 in Sustainable Manufacturing

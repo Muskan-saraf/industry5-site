@@ -2,6 +2,7 @@
 title: "Introduction to Industry 5.0"
 date: "2025-01-28"
 tags: ["Industry 5.0 Tech", "Resources"]
+content: "This case study explores how human-centric approaches impact real-world applications. We look at practical industry use cases..."
 ---
 
 # Introduction to Industry 5.0

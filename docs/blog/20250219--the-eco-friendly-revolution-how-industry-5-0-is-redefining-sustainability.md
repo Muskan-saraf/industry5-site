@@ -2,6 +2,7 @@
 title: "   - The Eco-Friendly Revolution: How Industry 5.0 is Redefining Sustainability"
 date: "2025-02-19"
 tags: ["Case Study / Applications"]
+content: "This case study explores how human-centric approaches impact real-world applications. We look at practical industry use cases..."
 ---
 
 #    - The Eco-Friendly Revolution: How Industry 5.0 is Redefining Sustainability

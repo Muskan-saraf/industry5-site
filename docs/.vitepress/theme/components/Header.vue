@@ -70,7 +70,7 @@ const selectCategory = (category) => {
 /* ✅ Left-Aligned Logo */
 .logo-container {
   display: flex;
-  flex: 1; /* Ensures it stays slightly left */
+  flex: 3; /* Ensures it stays slightly left */
 }
 
 .logo {
@@ -83,14 +83,14 @@ const selectCategory = (category) => {
 
 /* ✅ Spacer for Centering */
 .spacer {
-  flex: 2; /* Keeps the layout responsive */
+  flex: 1; /* Keeps the layout responsive */
 }
 
 /* ✅ Right-Aligned Buttons */
 .button-container {
   display: flex;
   gap: 15px;
-  flex: 1; /* Ensures buttons stay on the right */
+  flex: 3; /* Ensures buttons stay on the right */
   justify-content: flex-end;
 }
 

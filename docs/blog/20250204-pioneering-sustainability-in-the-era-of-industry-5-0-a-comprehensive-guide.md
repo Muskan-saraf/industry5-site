@@ -2,6 +2,7 @@
 title: "Pioneering Sustainability in the Era of Industry 5.0: A Comprehensive Guide"
 date: "2025-02-04"
 tags: ["Sustainability"]
+content: "This case study explores how human-centric approaches impact real-world applications. We look at practical industry use cases..."
 ---
 
 # Pioneering Sustainability in the Era of Industry 5.0: A Comprehensive Guide

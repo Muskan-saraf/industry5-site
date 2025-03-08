@@ -2,6 +2,7 @@
 title: "My Journey"
 date: "2025-03-07"
 tags: ["Business Strategies"]
+content: "If you would have asked me a year ago if I ever envisioned myself, countertop dusted with flour..."
 ---
 
 

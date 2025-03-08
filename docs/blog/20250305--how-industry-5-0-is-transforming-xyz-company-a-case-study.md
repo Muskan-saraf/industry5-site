@@ -2,6 +2,7 @@
 title: "   How Industry 5.0 is Transforming XYZ Company: A Case Study"
 date: "2025-03-05"
 tags: ["Case Study / Applications"]
+content: "This case study explores how human-centric approaches impact real-world applications. We look at practical industry use cases..."
 ---
 
 #    - How Industry 5.0 is Transforming XYZ Company: A Case Study

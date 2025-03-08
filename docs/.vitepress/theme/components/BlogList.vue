@@ -46,6 +46,7 @@ const filteredBlogs = computed(() => {
   return blogs.value.filter((blog) => blog.tags.includes(selectedTag.value));
 });
 
+
 // Format Date Utility
 const formatDate = (date) => {
   if (!date) return "Date not provided";
@@ -58,18 +59,15 @@ const formatDate = (date) => {
   return new Date(date).toLocaleDateString("en-US", options);
 };
 
-// ✅ Extract first 3 lines of the blog content
-const getExcerpt = (content, lineCount = 3) => {
+// ✅ Extract first few lines instead of just words
+const getExcerpt = (content, sentenceCount = 3) => {
   if (!content) return "No content available.";
 
-  // ✅ Split content into lines, remove empty lines
-  const lines = content.split("\n").filter((line) => line.trim() !== "");
-
-  // ✅ Get only the first `lineCount` lines
-  const excerpt = lines.slice(0, lineCount).join(" ");
-
-  return excerpt.length > 0 ? excerpt + "..." : "No content available.";
+  // ✅ Split content by full stops (.) to extract meaningful sentences
+  const sentences = content.split(/(?<=\.)\s+/); // Splits sentences correctly
+  return sentences.slice(0, sentenceCount).join(" ") + (sentences.length > sentenceCount ? "..." : "");
 };
+
 </script>
 
 <style scoped>
@@ -100,6 +98,12 @@ const getExcerpt = (content, lineCount = 3) => {
 .tag-button.active {
   background: #4169E1;
   color: white;
+}
+
+.read-more {
+  color: blue;
+  text-decoration: underline;
+  cursor: pointer;
 }
 
 /* ✅ Make tags inside blogs clickable with spacing */
@@ -166,4 +170,6 @@ const getExcerpt = (content, lineCount = 3) => {
   margin-right: 0.5rem;
   cursor: pointer;
 }
+
+
 </style>

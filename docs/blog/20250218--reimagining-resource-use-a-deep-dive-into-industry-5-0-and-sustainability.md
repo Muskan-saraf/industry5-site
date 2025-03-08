@@ -2,6 +2,7 @@
 title: "   - Reimagining Resource Use: A Deep Dive into Industry 5.0 and Sustainability"
 date: "2025-02-18"
 tags: ["Industry 5.0 Tech"]
+content: "This case study explores how human-centric approaches impact real-world applications. We look at practical industry use cases..."
 ---
 
 #    - Reimagining Resource Use: A Deep Dive into Industry 5.0 and Sustainability

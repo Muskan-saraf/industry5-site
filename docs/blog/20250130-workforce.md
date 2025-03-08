@@ -2,6 +2,7 @@
 title: "Empowering the Workforce: Industry 5.0's Impact on Human-Centric Innovation"
 date: "2025-01-30"
 tags: ["Human Centric"]
+content: "This case study explores how human-centric approaches impact real-world applications. We look at practical industry use cases..."
 ---
 
 # Empowering the Workforce: Industry 5.0's Impact on Human-Centric Innovation

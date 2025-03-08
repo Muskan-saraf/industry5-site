@@ -2,6 +2,7 @@
 title: "Case Study / Applications:"
 date: "2025-03-03"
 tags: ["Human Centric"]
+content: "This case study explores how human-centric approaches impact real-world applications. We look at practical industry use cases..."
 ---
 
 # Case Study / Applications:

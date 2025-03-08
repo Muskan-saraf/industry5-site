@@ -2,6 +2,7 @@
 title: "Decoding The Cutting-Edge Technologies Driving Industry 5.0"
 date: "2025-02-11"
 tags: ["Industry 5.0 Tech"]
+content: "This case study explores how human-centric approaches impact real-world applications. We look at practical industry use cases..."
 ---
 
 # Decoding The Cutting-Edge Technologies Driving Industry 5.0

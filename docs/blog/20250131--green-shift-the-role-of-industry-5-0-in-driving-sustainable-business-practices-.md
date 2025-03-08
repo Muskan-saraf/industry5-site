@@ -2,6 +2,7 @@
 title: "Green Shift: The Role of Industry 5.0 in Driving Sustainable Business Practices"
 date: "2025-01-31"
 tags: ["Sustainability"]
+content: "This case study explores how human-centric approaches impact real-world applications. We look at practical industry use cases..."
 ---
 
 # "Green Shift: The Role of Industry 5.0 in Driving Sustainable Business Practices"

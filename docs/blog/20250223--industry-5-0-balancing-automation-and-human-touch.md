@@ -2,6 +2,7 @@
 title: " Industry 5.0: Balancing Automation and Human Touch"
 date: "2025-02-23"
 tags: ["Sustainability"]
+content: "This case study explores how human-centric approaches impact real-world applications. We look at practical industry use cases..."
 ---
 
 #    - Industry 5.0: Balancing Automation and Human Touch

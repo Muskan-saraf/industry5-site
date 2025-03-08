@@ -2,6 +2,7 @@
 title: "Preparing the Workforce for Industry 5.0: Key Development Strategies"
 date: "2025-02-13"
 tags: ["Workforce Development"]
+content: "This case study explores how human-centric approaches impact real-world applications. We look at practical industry use cases..."
 ---
 
 # Preparing the Workforce for Industry 5.0: Key Development Strategies
