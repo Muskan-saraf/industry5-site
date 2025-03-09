@@ -3,12 +3,6 @@ title: "Industry 5.0: The Future of Human-Centric Manufacturing"
 date: "2025-03-09"
 tags: ["Human Centric"]
 content: "Industry 5.0: The Future of Human-Centric Manufacturing
-The industrial landscape is evolving, and we are now stepping into the next..."
----
-
-# Industry 5.0: The Future of Human-Centric Manufacturing
-
-Industry 5.0: The Future of Human-Centric Manufacturing
 The industrial landscape is evolving, and we are now stepping into the next revolution—Industry 5.0. While Industry 4.0 focused on automation, data-driven decision-making, and smart factories, Industry 5.0 takes it a step further by reintroducing human creativity and intelligence into the production process. This new phase of industrial transformation is not just about efficiency; it’s about collaboration between humans and machines, sustainability, and personalization.
 
 What Is Industry 5.0?
@@ -52,4 +46,7 @@ The Future of Industry 5.0
 As businesses adopt human-centric automation, personalized production, and sustainable manufacturing, Industry 5.0 will reshape industries and redefine the global economy. Forward-thinking companies that embrace this transformation will stay ahead of the competition and set new benchmarks for innovation.
 
 🔹 Are you ready for the future of manufacturing?
-Let’s shape Industry 5.0 together—where technology enhances human potential rather than replacing it.
+Let’s shape Industry 5.0 together—where technology enhances human potential rather than replacing it."
+---
+
+The industrial landscape is evolving, and we are now stepping into the next revolution—Industry 5.0. While Industry 4.0 focused on automation, data-driven decision-making, and smart factories, Industry 5.0
