@@ -17,29 +17,30 @@
 
       <!-- ✅ Desktop Buttons (Visible on Laptop) -->
       <div class="button-container">
-        <a href="/industry5-site/subscribe" class="header-btn" @click="closeMenu">📩 Subscribe</a>
-        <a href="/industry5-site/contact" class="header-btn" @click="closeMenu">Contact</a>
+        <a href="/industry5-site/subscribe.html" class="header-btn" @click="closeMenu">📩 Subscribe</a>
+        <a href="/industry5-site/contact.html" class="header-btn" @click="closeMenu">Contact</a>
       </div>
     </div>
 
     <!-- ✅ Desktop Menu (Always Visible) -->
     <nav class="menu-container" :class="{ open: isMenuOpen || isDesktop }">
       <div class="menu">
-        <a
-          v-for="category in categories"
-          :key="category"
-          href="#"
-          class="menu-item"
-          :class="{ active: category === selectedTag }"
-          @click.prevent="selectCategory(category)"
-        >
-          {{ category }}
-        </a>
+       <a
+  v-for="category in categories"
+  :key="category"
+  href="#"
+  class="menu-item"
+  :class="{ active: category === selectedTag }"
+  @click.prevent="updateCategory(category)"
+>
+  {{ category }}
+</a>
+
 
         <!-- ✅ Subscribe & Contact Buttons (Mobile Only) -->
         <div class="mobile-buttons" v-if="!isDesktop">
-          <a href="/industry5-site/subscribe" class="header-btn" @click="closeMenu">📩 Subscribe</a>
-          <a href="/industry5-site/contact" class="header-btn" @click="closeMenu">Contact</a>
+          <a href="/industry5-site/subscribe.html" class="header-btn" @click="closeMenu">📩 Subscribe</a>
+          <a href="/industry5-site/contact.html" class="header-btn" @click="closeMenu">Contact</a>
         </div>
       </div>
     </nav>
@@ -88,10 +89,16 @@ const resetTag = () => {
   closeMenu();
 };
 
-const selectCategory = (category) => {
+import { useRouter } from "vitepress";
+
+const router = useRouter();
+
+const updateCategory = (category) => {
   selectTag(category);
   closeMenu();
+  router.go(`/industry5-site/?category=${encodeURIComponent(category)}`);
 };
+
 </script>
 
 <style scoped>
