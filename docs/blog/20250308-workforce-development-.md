@@ -2,6 +2,7 @@
 title: "Workforce Development:"
 date: "2025-03-08"
 tags: ["Resources"]
+content: "If you would have asked me a year ago if I ever envisioned myself, countertop dusted with flour..."
 ---
 
 # Workforce Development:
