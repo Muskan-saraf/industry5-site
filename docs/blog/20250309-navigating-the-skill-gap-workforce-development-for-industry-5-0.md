@@ -1,10 +1,11 @@
 ---
-title: "   - Navigating the Skill Gap: Workforce Development for Industry 5.0"
+title: "   Navigating the Skill Gap: Workforce Development for Industry 5.0"
 date: "2025-03-09"
 tags: ["Sustainability"]
+content: "If you would have asked me a year ago if I ever envisioned myself, countertop dusted with flour..."
 ---
 
-#    - Navigating the Skill Gap: Workforce Development for Industry 5.0
+#    Navigating the Skill Gap: Workforce Development for Industry 5.0
 
 In the dim light of my study one cold winter night, I sat pondering how our world is changing faster than we can comprehend. The rapid acceleration of technology is altering the very fabric of our society, increasingly intertwined with the term 'Industry 5.0.' As I sat by my crackling fireplace, I couldn't help but think about one major concern: the widening skill gap in our ever-evolving workforce.
 

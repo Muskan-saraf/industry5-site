@@ -5,15 +5,12 @@ import AdSection from "./components/AdSection.vue";
 import { Content, useData } from "vitepress";
 
 const { page } = useData();
-
-
 </script>
 
 <template>
   <div>
-    <!-- ✅ Header (keeps it visible) -->
+    <!-- ✅ Header (with responsive menu) -->
     <Header />
-
 
     <!-- ✅ Ad Section (Only shown on other pages) -->
     <div class="ad-wrapper">
@@ -33,16 +30,14 @@ const { page } = useData();
 </template>
 
 <style scoped>
-.spacer {
-  height: 100px;
-}
-
+/* ✅ Adds space between the header and content */
 .ad-wrapper {
-  margin-top: 20px;
+  margin-top: 120px;
   display: flex;
   justify-content: center;
 }
 
+/* ✅ Page container */
 .container {
   max-width: 900px;
   margin: 0 auto;
@@ -54,5 +49,21 @@ const { page } = useData();
 
 main {
   padding: 20px;
+}
+
+/* ✅ Responsive styles */
+@media (max-width: 768px) {
+  .ad-wrapper {
+    margin-top: 60px;
+  }
+
+  .container {
+    max-width: 95%;
+    padding: 15px;
+  }
+
+  main {
+    padding: 15px;
+  }
 }
 </style>
