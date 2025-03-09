@@ -2,7 +2,7 @@
 title: "Pioneering Sustainability in the Era of Industry 5.0: A Comprehensive Guide"
 date: "2025-02-04"
 tags: ["Sustainability"]
-content: "Once upon a time, not too long ago, I would venture into a grocery store and there...
+content: "Once upon a time, not too long ago, I would venture into a grocery store and there..."
 ---
 
 # Pioneering Sustainability in the Era of Industry 5.0: A Comprehensive Guide
