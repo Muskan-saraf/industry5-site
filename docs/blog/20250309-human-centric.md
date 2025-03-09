@@ -2,6 +2,8 @@
 title: "Industry 5.0: The Future of Human-Centric Manufacturing"
 date: "2025-03-09"
 tags: ["Human Centric"]
+content: "Industry 5.0: The Future of Human-Centric Manufacturing
+The industrial landscape is evolving, and we are now stepping into the next..."
 ---
 
 # Industry 5.0: The Future of Human-Centric Manufacturing
