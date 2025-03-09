@@ -1,25 +1,22 @@
-import { ref, onMounted } from "vue";
+import { computed } from "vue";
 
-const blogs = ref([]);
+const blogFiles = import.meta.glob("/blog/*.md", { eager: true });
 
 export function useBlogData() {
-  onMounted(() => {
-    const blogFiles = import.meta.glob("/blog/*.md", { eager: true });
-
-    console.log("🚀 Loaded Blog Files:", Object.keys(blogFiles)); // Debugging
-
-    if (Object.keys(blogFiles).length === 0) {
-      console.error("❌ No Markdown files found in /blog/");
+  const blogs = computed(() => {
+    if (!blogFiles || Object.keys(blogFiles).length === 0) {
+      console.warn("⚠️ No Markdown files found in /blog/. Ensure the directory contains .md files.");
+      return [];
     }
 
-    blogs.value = Object.entries(blogFiles)
+    console.log(`🚀 Loaded ${Object.keys(blogFiles).length} Blog Files:`, Object.keys(blogFiles));
+
+    return Object.entries(blogFiles)
       .map(([path, mod]) => {
         let frontmatter = mod.frontmatter || mod.default?.frontmatter || mod.__pageData?.frontmatter || {};
 
-        // ✅ Get content directly from frontmatter
-        const content = frontmatter.content || "No content available.";
-
         const title = frontmatter.title || "Untitled Blog";
+        const content = frontmatter.content || "No content available.";
         let formattedDate = "Invalid Date";
 
         if (frontmatter.date) {
@@ -38,9 +35,8 @@ export function useBlogData() {
         };
       })
       .sort((a, b) => new Date(b.date) - new Date(a.date));
-
-    console.log("📢 Final Blogs Loaded:", blogs.value);
   });
 
+  console.log("📢 Final Blogs Loaded:", blogs.value);
   return { blogs };
 }
