@@ -9,22 +9,21 @@ const { page } = useData();
 
 <template>
   <div>
-    <!-- ✅ Header (with responsive menu) -->
     <Header />
-
-    <!-- ✅ Ad Section (Only shown on other pages) -->
+    
+    <!-- ✅ Only One Ad Section -->
     <div class="ad-wrapper">
       <AdSection />
     </div>
 
-    <!-- ✅ Main Content -->
+    <!-- ✅ Only One Main Content -->
     <div class="container">
       <main>
         <Content />
       </main>
     </div>
 
-    <!-- ✅ Footer (Always Visible) -->
+    <!-- ✅ Only One Footer -->
     <Footer />
   </div>
 </template>
