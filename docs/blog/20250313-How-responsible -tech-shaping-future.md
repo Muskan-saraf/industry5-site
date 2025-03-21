@@ -2,6 +2,7 @@
 title: "Industry 5.0 and Ethical AI: How Responsible Tech is Shaping the Future"
 date: "2025-03-13"
 tags: ["Industry 5.o Tech"]
+content: "The rise of Industry 5.0 has brought advanced artificial intelligence (AI) into manufacturing, making operations smarter, faster, and more efficient. However, with this rapid adoption of AI comes a critical..."
 ---
 
 # Industry 5.0 and Ethical AI: How Responsible Tech is Shaping the Future

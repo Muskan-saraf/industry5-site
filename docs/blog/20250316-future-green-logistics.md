@@ -2,6 +2,7 @@
 title: "How Industry 5.0 is Revolutionizing Sustainable Supply Chains"
 date: "2025-03-16"
 tags: ["Huam Centric"]
+content: "Industry 5.0 is reshaping supply chain management by making it smarter, greener, and more sustainable. Unlike Industry 4.0, which focused on automation and efficiency, Industry 5.0 integrates human over"
 ---
 
 # How Industry 5.0 is Revolutionizing Sustainable Supply Chains

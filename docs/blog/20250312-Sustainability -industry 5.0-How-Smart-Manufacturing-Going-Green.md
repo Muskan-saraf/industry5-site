@@ -2,6 +2,7 @@
 title: "Sustainability in Industry 5.0: How Smart Manufacturing is Going Green"
 date: "2025-03-12"
 tags: ["Sustainability"]
+content: "Sustainability is at the core of Industry 5.0, revolutionizing the manufacturing sector with eco-friendly innovations, energy-efficient production, and ethical resource management. While Industry 4.0 focused..."
 ---
 
 # Sustainability in Industry 5.0: How Smart Manufacturing is Going Green

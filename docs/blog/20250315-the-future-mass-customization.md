@@ -2,6 +2,7 @@
 title: "Industry 5.0 and Personalized Production: The Era of Mass Customization"
 date: "2025-03-15"
 tags: ["Sustainability"]
+content: "Industry 5.0 is redefining manufacturing, shifting from mass production to mass customization. Unlike Industry 4.0, which focused on automation..."
 ---
 
 # Industry 5.0 and Personalized Production: The Era of Mass Customization

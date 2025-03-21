@@ -2,6 +2,7 @@
 title: "The Rise of Industry 5.0: A Human-Centric Approach to Innovation"
 date: "2025-03-10"
 tags: ["Human Centric"]
+content: "The world has witnessed multiple industrial revolutions, each marked by groundbreaking advancements that reshaped economies and societies..."
 ---
 
 # The Rise of Industry 5.0: A Human-Centric Approach to Innovation

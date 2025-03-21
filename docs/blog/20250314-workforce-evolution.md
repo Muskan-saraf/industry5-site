@@ -2,6 +2,7 @@
 title: "The Future of Work in Industry 5.0: Skills, Jobs, and Workforce Evolution"
 date: "2025-03-14"
 tags: ["Huam Centric"]
+content: "The rapid shift from Industry 4.0 to Industry 5.0 is not just about smart factories and automation—it’s about humans and technology working together. Unlike previous industrial revolutions..."
 ---
 
 # The Future of Work in Industry 5.0: Skills, Jobs, and Workforce Evolution
