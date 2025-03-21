@@ -19,7 +19,8 @@ const { page } = useData();
     <!-- ✅ Only One Main Content -->
     <div class="container">
       <main>
-        <Content />
+        <Content :key="$route.path" />
+
       </main>
     </div>
 

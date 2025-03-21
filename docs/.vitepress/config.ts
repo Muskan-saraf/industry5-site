@@ -3,10 +3,10 @@ import { defineConfig } from "vitepress";
 export default defineConfig({
   title: "Industry 5.0 Hub",
   description: "Your go-to resource for Industry 5.0 insights and tools.",
-  base: "/industry5-site/",  // ✅ Make sure this matches your GitHub Pages repo
+  base: "/industry5-site/", // ✅ Ensure this matches your GitHub repo
   themeConfig: {
     nav: [
-      { text: "Home", link: "/" },  // ✅ Must include .html
+      { text: "Home", link: "/" },  // ✅ No `.html`
       { text: "Subscribe", link: "/subscribe" },
       { text: "Contact", link: "/contact" },
     ],
