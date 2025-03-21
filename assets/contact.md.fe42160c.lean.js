@@ -1,1 +1,0 @@
-import{_ as t,o as i,c as n,a as s}from"./app.952ab274.js";const g=JSON.parse('{"title":"Contact Us","description":"","frontmatter":{"title":"Contact Us"},"headers":[],"relativePath":"contact.md"}'),o={name:"contact.md"},c=s("",1),a=[c];function e(r,l,d,p,m,u){return i(),n("div",null,a)}const _=t(o,[["render",e]]);export{g as __pageData,_ as default};
