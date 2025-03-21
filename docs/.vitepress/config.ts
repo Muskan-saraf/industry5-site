@@ -6,9 +6,9 @@ export default defineConfig({
   base: "/industry5-site/",  // ✅ Make sure this matches your GitHub Pages repo
   themeConfig: {
     nav: [
-      { text: "Home", link: "/index.html" },  // ✅ Must include .html
-      { text: "Subscribe", link: "/subscribe.html" },
-      { text: "Contact", link: "/contact.html" },
+      { text: "Home", link: "/" },  // ✅ Must include .html
+      { text: "Subscribe", link: "/subscribe" },
+      { text: "Contact", link: "/contact" },
     ],
     footer: {
       message: "© 2025 Industry 5.0 Hub. All Rights Reserved.",

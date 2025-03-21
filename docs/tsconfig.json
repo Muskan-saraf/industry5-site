@@ -1,0 +1,15 @@
+{
+    "compilerOptions": {
+      "moduleResolution": "node",
+      "esModuleInterop": true,
+      "allowJs": true,
+      "strict": false,
+      "types": ["vitepress/client"]
+    },
+    "include": [
+      ".vitepress/theme/**/*.ts",
+      ".vitepress/theme/**/*.vue",
+      "docs/**/*.md"
+    ]
+  }
+  
