@@ -3,8 +3,15 @@ import Header from "./components/Header.vue";
 import Footer from "./components/Footer.vue";
 import AdSection from "./components/AdSection.vue";
 import { Content, useData } from "vitepress";
+import { ref, onMounted } from "vue";
+import { useRoute } from "vitepress";
 
-const { page } = useData();
+
+const routePath = ref("/"); // Default path for SSR
+
+onMounted(() => {
+  routePath.value = useRoute().path; // ✅ Only runs in the browser
+});
 </script>
 
 <template>
@@ -19,8 +26,7 @@ const { page } = useData();
     <!-- ✅ Only One Main Content -->
     <div class="container">
       <main>
-        <Content :key="$route.path" />
-
+        <Content :key="routePath" />
       </main>
     </div>
 

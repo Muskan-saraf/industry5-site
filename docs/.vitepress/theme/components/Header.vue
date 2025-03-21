@@ -55,7 +55,7 @@ import { useTagStore } from "../composables/useTagStore";
 const { selectedTag, selectTag } = useTagStore();
 const categories = ["Industry 5.0 Tech", "Human Centric", "Sustainability"];
 const isMenuOpen = ref(false);
-const isDesktop = ref(window.innerWidth > 768);
+const isDesktop = ref(typeof window !== "undefined" ? window.innerWidth > 768 : false); // Safe for SSR
 const route = useRoute(); // ✅ Detect route changes
 
 // ✅ Close menu on navigation
